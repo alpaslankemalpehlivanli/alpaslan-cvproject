@@ -3,16 +3,6 @@
   position: fixed;
   inset: 0;
   z-index: 100;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(245, 208, 32, 0.035) 0%, transparent 70%),
-    var(--cv-bg);
-  background-image:
-    repeating-conic-gradient(
-      from 0deg at 50% 50%,
-      transparent 0deg 5.5deg,
-      rgba(245, 208, 32, 0.018) 5.5deg 6deg
-    ),
-    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(245, 208, 32, 0.04) 0%, transparent 70%);
   background-color: var(--cv-bg);
   display: flex;
   align-items: center;

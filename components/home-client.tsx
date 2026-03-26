@@ -19,19 +19,6 @@ export function HomeClient() {
 
   return (
     <div className={s.root}>
-      {/* Decorative comic panel corners — always visible */}
-      <div className={s.comicDecor} aria-hidden="true">
-        <span className={s.decorCornerTL} />
-        <span className={s.decorCornerTR} />
-        <span className={s.decorCornerBL} />
-        <span className={s.decorCornerBR} />
-        <span className={s.decorOnomatoA}>POW!</span>
-        <span className={s.decorOnomatoB}>ZAP!</span>
-        <span className={s.decorDiamond1}>◆</span>
-        <span className={s.decorDiamond2}>◆</span>
-        <span className={s.decorDiamond3}>◆</span>
-      </div>
-
       {/* Collapses to slide header from center to top */}
       <motion.div
         aria-hidden="true"
