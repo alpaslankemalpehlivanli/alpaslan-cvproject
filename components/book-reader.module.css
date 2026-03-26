@@ -504,7 +504,7 @@
 }
 
 .cvEduDegree {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.82rem;
   color: rgba(26, 18, 8, 0.80);
   line-height: 1.5;
@@ -513,7 +513,7 @@
 }
 
 .cvEduPeriod {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.76rem;
   color: rgba(100, 55, 8, 0.68);
   letter-spacing: 0.08em;
@@ -614,7 +614,7 @@
 }
 
 .cvBold {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.84rem;
   font-weight: 700;
   color: rgba(26, 18, 8, 0.95);
@@ -623,7 +623,7 @@
 }
 
 .cvText {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.80rem;
   color: rgba(26, 18, 8, 0.80);
   line-height: 1.35;
@@ -631,7 +631,7 @@
 }
 
 .cvMuted {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.72rem;
   color: rgba(100, 55, 8, 0.65);
   line-height: 1.3;
@@ -649,7 +649,7 @@
 }
 
 .cvBullet {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.76rem;
   color: rgba(26, 18, 8, 0.84);
   line-height: 1.52;
@@ -801,7 +801,7 @@
 }
 
 .cvLangBadge {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.70rem;
   color: rgba(100, 55, 8, 0.72);
   letter-spacing: 0.06em;
@@ -838,7 +838,7 @@
 }
 
 .cvContactText {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.78rem;
   color: rgba(26, 18, 8, 0.84);
   line-height: 1.3;
@@ -962,7 +962,7 @@
 }
 
 .achRankLabel {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.42rem;
   letter-spacing: 0.38em;
   color: rgba(255, 255, 255, 0.72);
@@ -996,7 +996,7 @@
 
 /* ── Period ──────────────────────────────────── */
 .achPeriod {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.56rem;
   letter-spacing: 0.12em;
   color: rgba(220, 210, 180, 0.45);
@@ -1016,7 +1016,7 @@
 }
 
 .achBullet {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.72rem;
   color: rgba(220, 215, 240, 0.82);
   line-height: 1.55;
@@ -1106,6 +1106,30 @@
   box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
 
+/* ── Gallery section header ──────────────────── */
+.achGalleryHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px 3px;
+}
+
+.achGalleryDividerLine {
+  flex: 1;
+  height: 1px;
+  background: var(--ach-accent, var(--cv-yellow));
+  opacity: 0.45;
+}
+
+.achGalleryLabel {
+  font-family: var(--font-bangers);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: var(--ach-accent, var(--cv-yellow));
+  opacity: 0.75;
+  white-space: nowrap;
+}
+
 /* ── Gallery row ─────────────────────────────── */
 .achGallery {
   flex-shrink: 0;
@@ -1113,7 +1137,6 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 3px;
   padding: 3px;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.07);
 }
 
 .achThumb {
@@ -1390,7 +1413,7 @@
   bottom: 8px;
   left: 8px;
   z-index: 3;
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.54rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -1502,7 +1525,7 @@
 
 /* ── Subtitle ─────────────────────────────────── */
 .projSubtitle {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -1548,7 +1571,7 @@
 }
 
 .projJamOverlayName {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -1560,7 +1583,7 @@
 }
 
 .projJamOverlayPeriod {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.5rem;
   color: rgba(245, 208, 32, 0.55);
   letter-spacing: 0.1em;
@@ -1577,7 +1600,7 @@
 }
 
 .projBadge {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.56rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1599,7 +1622,7 @@
 
 /* ── Short description paragraph ─────────────── */
 .projDescription {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.66rem;
   color: rgba(200, 196, 220, 0.62);
   line-height: 1.65;
@@ -1622,7 +1645,7 @@
 }
 
 .projBullet {
-  font-family: var(--font-space-mono);
+  font-family: var(--font-jetbrains);
   font-size: 0.72rem;
   color: rgba(220, 215, 240, 0.82);
   line-height: 1.55;

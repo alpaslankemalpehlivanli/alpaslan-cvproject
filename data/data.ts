@@ -56,7 +56,9 @@ export const achievements = [
       "Developed an innovative VR-based beauty and care solution.",
       "Placed 2nd among 200 teams in the Istanbul finals, selected as one of the top 4 finalist teams.",
     ],
-    links: [],
+    links: [
+      { label: "VIDEO", href: "https://youtu.be/Ab5HMRR4nso?si=KmpyYGXVbZGFBrTt" },
+    ],
     centeredBullets: true,
   },
 ];

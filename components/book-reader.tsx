@@ -559,6 +559,13 @@ const AchievementPage = forwardRef<HTMLDivElement, AchievementPageProps>(
         </div>
       </div>
 
+      {/* Photos section header */}
+      <div className={s.achGalleryHeader}>
+        <span className={s.achGalleryDividerLine} />
+        <span className={s.achGalleryLabel}>PHOTOS</span>
+        <span className={s.achGalleryDividerLine} />
+      </div>
+
       {/* Photo gallery row */}
       <div className={s.achGallery}>
         {images.gallery.map((src, i) => (

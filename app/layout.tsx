@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bangers, Space_Mono } from "next/font/google";
+import { Bangers, Nunito, JetBrains_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 
 const bangers = Bangers({
@@ -8,8 +8,20 @@ const bangers = Bangers({
   weight: "400",
 });
 
-const spaceMono = Space_Mono({
-  variable: "--font-space-mono",
+const nunito = Nunito({
+  variable: "--font-nunito",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const caveat = Caveat({
+  variable: "--font-caveat",
   subsets: ["latin"],
   weight: ["400", "700"],
 });
@@ -26,8 +38,8 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="tr"
-      className={`${bangers.variable} ${spaceMono.variable} h-full antialiased`}
+      lang="en"
+      className={`${bangers.variable} ${nunito.variable} ${jetbrainsMono.variable} ${caveat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
