@@ -1,0 +1,164 @@
+/* ── Library row ─────────────────────────────── */
+/*
+ * No overflow set here — overflow-x: clip on .root handles edge clipping
+ * without creating a scroll container that would cut 3D transforms.
+ */
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2.4rem;
+}
+
+/* ── Book cover button ───────────────────────── */
+.bookBtn {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*
+   * Padding-top gives the tilting cover breathing room above
+   * so the perspective transform isn't visually cut at the top.
+   */
+  padding-top: 20px;
+}
+
+/* ── Cover face ──────────────────────────────── */
+.coverFace {
+  position: relative;
+  width: 240px;
+  height: 340px;
+  background: linear-gradient(160deg, #1c1508 0%, #110d05 55%, #1a1108 100%);
+  border: 2px solid rgba(245, 208, 32, 0.4);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Stacked-pages edge shadow */
+  box-shadow:
+    3px 3px 0 #221808,
+    6px 6px 0 #1a1207,
+    9px 9px 0 #120d05,
+    9px 9px 22px rgba(0, 0, 0, 0.7);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+  will-change: transform;
+}
+
+/* Diagonal stripe texture on cover */
+.coverFace::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 12px,
+    rgba(245, 208, 32, 0.025) 12px,
+    rgba(245, 208, 32, 0.025) 13px
+  );
+}
+
+/* Hover: left-hinge open suggestion */
+.bookBtn:hover .coverFace {
+  transform: perspective(900px) rotateY(-14deg);
+}
+
+/* ── Cover inner frame ───────────────────────── */
+.coverInner {
+  position: relative;
+  z-index: 1;
+  width: 68%;
+  height: 72%;
+  border: 1px solid rgba(245, 208, 32, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.coverInner::before,
+.coverInner::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(245, 208, 32, 0.6);
+  border-style: solid;
+}
+
+.coverInner::before {
+  top: -2px;
+  left: -2px;
+  border-width: 2px 0 0 2px;
+}
+
+.coverInner::after {
+  bottom: -2px;
+  right: -2px;
+  border-width: 0 2px 2px 0;
+}
+
+.coverRoman {
+  font-family: var(--font-bangers);
+  font-size: 4.8rem;
+  letter-spacing: 0.1em;
+  color: rgba(245, 208, 32, 0.8);
+  line-height: 1;
+}
+
+/* ── Label inside cover frame ────────────────── */
+.coverLabel {
+  font-family: var(--font-bangers);
+  font-size: 1.25rem;
+  letter-spacing: 0.22em;
+  color: rgba(245, 208, 32, 0.72);
+}
+
+/* ── Mobile: 481px – 700px ───────────────────── */
+/*
+ * Three books at 155px + 2×22px gap = 510px.
+ * Works down to ~560px viewport with standard padding.
+ */
+@media (max-width: 700px) {
+  .row { gap: 1.4rem; }
+  .coverFace {
+    width: 180px;
+    height: 256px;
+  }
+  .coverRoman { font-size: 3.5rem; }
+  .coverLabel { font-size: 1rem; }
+}
+
+/* ── Mobile: ≤ 480px ─────────────────────────── */
+/*
+ * Three books at 96px + 2×11px gap = 310px.
+ * Fits a 375px viewport with 1rem side padding in .main.
+ */
+@media (max-width: 480px) {
+  .row { gap: 0.7rem; }
+  .bookBtn { padding-top: 12px; }
+  .coverFace {
+    width: 96px;
+    height: 137px;
+  }
+  .coverRoman {
+    font-size: 1.8rem;
+    letter-spacing: 0.07em;
+  }
+  .coverLabel {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+  }
+  /* Scale down corner bracket accents proportionally */
+  .coverInner::before,
+  .coverInner::after {
+    width: 8px;
+    height: 8px;
+  }
+}

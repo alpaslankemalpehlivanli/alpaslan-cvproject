@@ -1,0 +1,364 @@
+/* ── Root ─────────────────────────────────────── */
+.root {
+  position: relative;
+  min-height: 100vh;
+  background-color: #040404;
+  background-image:
+    radial-gradient(ellipse 100% 55% at 50% 0%,
+      rgba(245, 208, 32, 0.07) 0%, transparent 65%),
+    linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.75) 100%),
+    url('/background.png');
+  background-size: auto, 100% 100%, cover;
+  background-position: center top, center center, center top;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  overflow-x: clip;
+}
+
+/*
+ * Spacer sits above the header in document flow.
+ * At full height it pushes the header to ~50vh (intro).
+ * Animating to height:0 slides the header to the top.
+ */
+.spacer {
+  overflow: hidden;
+  min-height: 0;
+  pointer-events: none;
+}
+
+/* ── Decorative comic overlay ─────────────────── */
+.comicDecor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Corner bracket lines — top-left */
+.decorCornerTL {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-top: 3px solid rgba(245, 208, 32, 0.22);
+  border-left: 3px solid rgba(245, 208, 32, 0.22);
+}
+
+/* Corner bracket lines — top-right */
+.decorCornerTR {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-top: 3px solid rgba(245, 208, 32, 0.22);
+  border-right: 3px solid rgba(245, 208, 32, 0.22);
+}
+
+/* Corner bracket lines — bottom-left */
+.decorCornerBL {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-bottom: 3px solid rgba(245, 208, 32, 0.22);
+  border-left: 3px solid rgba(245, 208, 32, 0.22);
+}
+
+/* Corner bracket lines — bottom-right */
+.decorCornerBR {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-bottom: 3px solid rgba(245, 208, 32, 0.22);
+  border-right: 3px solid rgba(245, 208, 32, 0.22);
+}
+
+/* Onomatope A — "POW!" top-right */
+.decorOnomatoA {
+  position: absolute;
+  top: 14vh;
+  right: 6vw;
+  font-family: var(--font-bangers);
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+  letter-spacing: 0.06em;
+  color: var(--cv-yellow);
+  opacity: 0.08;
+  transform: rotate(14deg) skewX(-6deg);
+  -webkit-text-stroke: 2px rgba(196, 30, 0, 0.18);
+  paint-order: stroke fill;
+  white-space: nowrap;
+}
+
+/* Onomatope B — "ZAP!" bottom-left */
+.decorOnomatoB {
+  position: absolute;
+  bottom: 14vh;
+  left: 5vw;
+  font-family: var(--font-bangers);
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  letter-spacing: 0.06em;
+  color: var(--cv-red);
+  opacity: 0.1;
+  transform: rotate(-10deg) skewX(4deg);
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.2);
+  paint-order: stroke fill;
+  white-space: nowrap;
+}
+
+/* Floating diamond accents */
+.decorDiamond1 {
+  position: absolute;
+  top: 18vh;
+  left: 8vw;
+  font-size: 1.1rem;
+  color: rgba(245, 208, 32, 0.16);
+  font-family: var(--font-bangers);
+  animation: diamond-pulse 3.2s ease-in-out infinite;
+}
+
+.decorDiamond2 {
+  position: absolute;
+  bottom: 22vh;
+  right: 9vw;
+  font-size: 0.85rem;
+  color: rgba(196, 30, 0, 0.15);
+  font-family: var(--font-bangers);
+  animation: diamond-pulse 4.1s ease-in-out infinite 0.7s;
+}
+
+.decorDiamond3 {
+  position: absolute;
+  top: 42vh;
+  right: 4vw;
+  font-size: 0.65rem;
+  color: rgba(245, 208, 32, 0.12);
+  font-family: var(--font-bangers);
+  animation: diamond-pulse 2.8s ease-in-out infinite 1.4s;
+}
+
+@keyframes diamond-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(1.4); }
+}
+
+/* ── Header ──────────────────────────────────── */
+.header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding: 1.4rem 2rem 0;
+}
+
+/* ── Panel ───────────────────────────────────── */
+.panel {
+  position: relative;
+  width: fit-content;
+  max-width: min(92vw, 860px);
+  padding: 1.5rem 3.2rem 1.5rem;
+  border: 5px solid var(--cv-yellow);
+  clip-path: polygon(
+    28px 0,
+    100% 0,
+    100% calc(100% - 28px),
+    calc(100% - 28px) 100%,
+    0 100%,
+    0 28px
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset 0 0 80px rgba(245, 208, 32, 0.04);
+  filter: drop-shadow(6px 8px 0 rgba(0, 0, 0, 0.9));
+  animation: fade-in 0.5s ease both;
+}
+
+/* Speed lines */
+.panel::before {
+  content: "";
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: repeating-conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg 4.5deg,
+    rgba(245, 208, 32, 0.032) 4.5deg 5deg
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Chamfer accents — bottom-right & top-left */
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg,
+      transparent calc(50% - 2px),
+      var(--cv-yellow) calc(50% - 2px),
+      var(--cv-yellow) calc(50% + 2px),
+      transparent calc(50% + 2px)
+    ) top left / 28px 28px no-repeat,
+    linear-gradient(135deg,
+      transparent calc(50% - 2px),
+      var(--cv-yellow) calc(50% - 2px),
+      var(--cv-yellow) calc(50% + 2px),
+      transparent calc(50% + 2px)
+    ) bottom right / 28px 28px no-repeat;
+}
+
+/* ── Name ────────────────────────────────────── */
+.name {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-bangers);
+  font-size: clamp(1.2rem, 4vw, 3.2rem);
+  color: var(--cv-text);
+  letter-spacing: 0.1em;
+  line-height: 1;
+  white-space: nowrap;
+  -webkit-text-stroke: 3px rgba(0, 0, 0, 0.85);
+  paint-order: stroke fill;
+  animation: slam-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+/* ── Role badge ──────────────────────────────── */
+.roleBadge {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin-top: 0.65rem;
+  padding: 0.2em 1.8em;
+  background: var(--cv-yellow);
+  transform: skewX(-8deg);
+  animation: pop-badge 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.42s both;
+}
+
+.roleBadge::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.roleText {
+  display: inline-block;
+  transform: skewX(8deg);
+  font-family: var(--font-bangers);
+  font-size: clamp(0.95rem, 2vw, 1.35rem);
+  letter-spacing: 0.24em;
+  color: var(--cv-ink);
+}
+
+/* ── Main ────────────────────────────────────── */
+.main {
+  position: relative;
+  z-index: 1;
+  padding: 1.2rem 2rem 3rem;
+}
+
+/* ── Enter Library CTA ───────────────────────── */
+.ctaWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.8rem 0 2.5rem;
+}
+
+.enterBtn {
+  all: unset;
+  cursor: pointer;
+}
+
+.enterBtnInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.52em 2.4em;
+  background: var(--cv-yellow);
+  transform: skewX(-6deg);
+  position: relative;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease;
+  box-shadow:
+    4px 4px 0 rgba(0, 0, 0, 0.85),
+    0 0 0 2px var(--cv-yellow);
+}
+
+.enterBtnInner::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+
+.enterBtn:hover .enterBtnInner {
+  transform: skewX(-6deg) translateY(-3px) scale(1.05);
+  box-shadow:
+    6px 8px 0 rgba(0, 0, 0, 0.85),
+    0 0 26px rgba(245, 208, 32, 0.45);
+}
+
+.enterBtnText {
+  display: inline-block;
+  transform: skewX(6deg);
+  font-family: var(--font-bangers);
+  font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+  letter-spacing: 0.3em;
+  color: var(--cv-ink);
+}
+
+.enterBtnArrow {
+  display: inline-flex;
+  align-items: center;
+  transform: skewX(6deg);
+  color: var(--cv-ink);
+  animation: arrow-drift 1.8s ease-in-out infinite;
+}
+
+@keyframes arrow-drift {
+  0%, 100% { transform: skewX(6deg) translateY(0); }
+  50%       { transform: skewX(6deg) translateY(5px); }
+}
+
+/* ── Mobile: ≤ 700px ─────────────────────────── */
+@media (max-width: 700px) {
+  .header { padding: 1.2rem 1.25rem 0; }
+  .panel  { padding: 1.4rem 2rem 1.4rem; }
+  .main   { padding: 1rem 1.25rem 2.5rem; }
+}
+
+/* ── Mobile: ≤ 480px ─────────────────────────── */
+@media (max-width: 480px) {
+  .header { padding: 1rem 0.75rem 0; }
+
+  /* Tighter panel padding so name fits without wrapping */
+  .panel  { padding: 1.2rem 5rem 1.2rem; }
+
+  .main   { padding: 1rem 0.75rem 2.5rem; }
+
+  /* Thinner text-stroke — 3px at small sizes looks too heavy */
+  .name { -webkit-text-stroke: 2px rgba(0, 0, 0, 0.85); }
+
+  /* Tighter button text so it doesn't overflow viewport */
+  .enterBtnText   { letter-spacing: 0.15em; }
+  .enterBtnInner  { padding: 0.52em 1.6em; }
+}
