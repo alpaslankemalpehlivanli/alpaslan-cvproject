@@ -23,13 +23,28 @@ export function Books() {
             className={s.bookBtn}
             onClick={() => setSelected(idx)}
             aria-label={`Open ${book.label} book`}
-            initial={{ opacity: 0, y: 72 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.95,
-              delay: idx * 0.22,
-              ease: [0.22, 1, 0.36, 1],
+            initial={{
+              opacity: 0,
+              x: -80,
+              y: 40,
+              rotate: -8,
+              scale: 0.82,
             }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              y: 0,
+              rotate: 0,
+              scale: 1,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 80,
+              damping: 16,
+              mass: 1.6,
+              delay: idx * 0.32,
+            }}
+            whileTap={{ scale: 0.94 }}
           >
             <div className={s.coverFace}>
               <div className={s.coverInner}>
