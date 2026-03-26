@@ -12,6 +12,7 @@ import {
   Globe,
   Link2,
   Mail,
+  MapPin,
   X,
   ZoomIn,
 } from "lucide-react";
@@ -38,8 +39,8 @@ function usePageSize() {
   return size;
 }
 
-/* cover · photo · education · work · skills+contact · back-cover */
-const PROFILE_TOTAL_PAGES = 6;
+/* cover · photo · all-cv · back-cover */
+const PROFILE_TOTAL_PAGES = 4;
 /* cover · ach1 · ach2 · ach3 · back-cover */
 const ACHIEVEMENTS_TOTAL_PAGES = 5;
 /* cover · (content+album)×4 · back-cover */
@@ -358,6 +359,150 @@ const CVPage2 = forwardRef<HTMLDivElement, Record<string, never>>(
 );
 CVPage2.displayName = "CVPage2";
 
+/* ── CV page ALL: contact · work · education · skills ─────── */
+const CVPageAll = forwardRef<HTMLDivElement, Record<string, never>>(
+  (_, ref) => (
+    <div ref={ref}>
+    <div className={`${s.cvPage} ${s.cvPageAll}`}>
+
+      {/* EDUCATION */}
+      <section className={s.cvSec}>
+        <div className={`${s.cvHdr} ${s.cvHdrY}`}>
+          <span className={s.cvHdrTick}>◆</span>
+          <span className={s.cvHdrTxt}>EDUCATION</span>
+          <span className={s.cvHdrHatch} aria-hidden="true" />
+        </div>
+        <div className={s.cvBody}>
+          {education.map((e, i) => (
+            <div key={i} className={s.cvLogoRow}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/profile/metu_logo_h.png" alt="METU" className={s.cvLogo} />
+              <div className={s.cvLogoMeta}>
+                <div className={s.cvBold}>{e.institution}</div>
+                <div className={s.cvMuted}>{e.degree}</div>
+                <div className={s.cvMuted}>{e.location} · {e.period}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* WORK EXPERIENCE */}
+      <section className={s.cvSec}>
+        <div className={`${s.cvHdr} ${s.cvHdrR}`}>
+          <span className={s.cvHdrTick}>◆</span>
+          <span className={s.cvHdrTxt}>WORK EXPERIENCE</span>
+          <span className={s.cvHdrHatch} aria-hidden="true" />
+        </div>
+        <div className={s.cvBody}>
+          {workExperience.map((w, i) => (
+            <div key={i} className={s.cvWorkBlock}>
+              <div className={s.cvLogoRow}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/profile/T1_logo_h.png" alt="TigerOne Studios" className={s.cvLogo} />
+                <div className={s.cvLogoMeta}>
+                  <div className={s.cvBold}>{w.company} · {w.role}</div>
+                  <div className={s.cvMuted}>{w.location} · {w.period}</div>
+                </div>
+              </div>
+              <ul className={s.cvBullets}>
+                {w.bullets.map((b, j) => (
+                  <li key={j} className={s.cvBullet}>{b}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SKILLS */}
+      <section className={s.cvSec}>
+        <div className={`${s.cvHdr} ${s.cvHdrR}`}>
+          <span className={s.cvHdrTick}>◆</span>
+          <span className={s.cvHdrTxt}>SKILLS</span>
+          <span className={s.cvHdrHatch} aria-hidden="true" />
+        </div>
+        <div className={s.cvBody}>
+          <div className={s.cvSkillGrid}>
+            {skills.professional.map((sk, i) => (
+              <span key={i} className={s.cvSkillTag}>{sk}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* LANGUAGES */}
+      <section className={s.cvSec}>
+        <div className={`${s.cvHdr} ${s.cvHdrY}`}>
+          <span className={s.cvHdrTick}>◆</span>
+          <span className={s.cvHdrTxt}>LANGUAGES</span>
+          <span className={s.cvHdrHatch} aria-hidden="true" />
+        </div>
+        <div className={s.cvBody}>
+          <div className={s.cvLangRow}>
+            {skills.languages.map((l, i) => (
+              <div key={i} className={s.cvLangCard}>
+                <span className={s.cvLangName}>{l.name}</span>
+                <span className={s.cvLangBadge}>{l.level}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* INTERESTS */}
+      <section className={s.cvSec}>
+        <div className={`${s.cvHdr} ${s.cvHdrR}`}>
+          <span className={s.cvHdrTick}>◆</span>
+          <span className={s.cvHdrTxt}>INTERESTS</span>
+          <span className={s.cvHdrHatch} aria-hidden="true" />
+        </div>
+        <div className={s.cvBody}>
+          <div className={s.cvInterestTags}>
+            {skills.interests.map((interest, i) => (
+              <span key={i} className={`${s.cvInterestTag} ${
+                i % 3 === 0 ? s.cvInterestTagY :
+                i % 3 === 1 ? s.cvInterestTagR :
+                s.cvInterestTagK
+              }`}>{interest}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section className={s.cvSec}>
+        <div className={`${s.cvHdr} ${s.cvHdrY}`}>
+          <span className={s.cvHdrTick}>◆</span>
+          <span className={s.cvHdrTxt}>CONTACT</span>
+          <span className={s.cvHdrHatch} aria-hidden="true" />
+        </div>
+        <div className={s.cvContactGrid}>
+          <div className={s.cvContactItem}>
+            <span className={s.cvContactIcon}><Mail size={10} strokeWidth={2.5} /></span>
+            <span className={s.cvContactText}>{profile.email}</span>
+          </div>
+          <div className={s.cvContactItem}>
+            <span className={s.cvContactIcon}><Link2 size={10} strokeWidth={2.5} /></span>
+            <span className={s.cvContactText}>{profile.linkedin}</span>
+          </div>
+          <div className={s.cvContactItem}>
+            <span className={s.cvContactIcon}><Globe size={10} strokeWidth={2.5} /></span>
+            <span className={s.cvContactText}>{profile.website}</span>
+          </div>
+          <div className={s.cvContactItem}>
+            <span className={s.cvContactIcon}><MapPin size={10} strokeWidth={2.5} /></span>
+            <span className={s.cvContactText}>{profile.location}</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    </div>
+  )
+);
+CVPageAll.displayName = "CVPageAll";
+
 /* ── Achievement page ───────────────────────────────────────── */
 interface AchievementPageProps {
   achievement: {
@@ -637,7 +782,7 @@ export function BookReader({ roman, label, isProfile, isAchievements, isProjects
 
   // Build inner pages — react-pageflip rejects null children
   const innerPages = isProfile
-    ? [<ProfilePhotoPage />, <CVPageEducation />, <CVPageWork />, <CVPage2 />]
+    ? [<ProfilePhotoPage />, <CVPageAll />]
     : isAchievements
     ? achievements.map((ach, i) => (
         <AchievementPage

@@ -13,10 +13,10 @@ export const workExperience = [
     location: "Ankara, Turkey",
     period: "07/2025–Present",
     bullets: [
-      "Delivered 6 playable prototypes within 6 months under strict sprint and game jam timelines, including 4 PC game prototypes and 2 mobile game prototypes focused on clear core mechanics.",
-      "Designed mechanic-first gameplay systems with strong core loops, fast onboarding, and scalable progression, translating complex concepts into simple rule-based interactions adaptable to both PC and mobile formats.",
-      "Structured design documentation around interaction clarity, player feedback, and friction analysis, ensuring mechanics remain intuitive and easy to understand across different platforms.",
-      "Iterated mechanics through structured playtests and behavioral observation, refining engagement flow, session pacing, and replay value, with a focus on mechanics suitable for short-session mobile gameplay.",
+      "Delivered 6 playable prototypes in 6 months across PC and mobile under sprint and game jam timelines.",
+      "Designed mechanic-first systems with strong core loops, fast onboarding, and scalable progression for PC and mobile.",
+      "Structured design docs around interaction clarity, player feedback, and friction analysis across platforms.",
+      "Iterated via playtests, refining engagement flow, session pacing, and replay value for short-session gameplay.",
     ],
   },
 ];
