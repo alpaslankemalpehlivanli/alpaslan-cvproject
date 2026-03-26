@@ -851,11 +851,12 @@
 .achPage {
   width: 100%;
   height: 100%;
-  background-color: var(--cv-page);
+  background-color: #0d0b14;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  border: 2.5px solid rgba(26, 18, 8, 0.28);
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(var(--ach-accent-rgb, 200,134,10), 0.07) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-size: cover, 200px 200px;
+  border: 2.5px solid rgba(var(--ach-accent-rgb, 200,134,10), 0.2);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -863,19 +864,17 @@
   position: relative;
 }
 
-/* Speed lines radiating from center — comic panel energy */
+/* Scanline texture */
 .achPage::before {
   content: "";
   position: absolute;
-  width: 220%;
-  height: 220%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: repeating-conic-gradient(
-    from 0deg at 50% 50%,
-    transparent 0deg 4.8deg,
-    rgba(26, 18, 8, 0.02) 4.8deg 5deg
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.012) 2px,
+    rgba(255,255,255,0.012) 3px
   );
   pointer-events: none;
   z-index: 0;
@@ -980,23 +979,27 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .achBody {
-  padding: 4px 8px 6px;
+  padding: 5px 10px 6px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   overflow: hidden;
   flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Period ──────────────────────────────────── */
 .achPeriod {
   font-family: var(--font-space-mono);
-  font-size: 0.52rem;
+  font-size: 0.56rem;
   letter-spacing: 0.12em;
-  color: rgba(100, 55, 8, 0.65);
+  color: rgba(220, 210, 180, 0.45);
   line-height: 1.3;
   margin: 0;
   flex-shrink: 0;
@@ -1009,15 +1012,15 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
 }
 
 .achBullet {
   font-family: var(--font-space-mono);
-  font-size: 0.67rem;
-  color: rgba(26, 18, 8, 0.86);
-  line-height: 1.4;
-  padding-left: 11px;
+  font-size: 0.72rem;
+  color: rgba(220, 215, 240, 0.82);
+  line-height: 1.55;
+  padding-left: 16px;
   position: relative;
   margin: 0;
 }
@@ -1027,49 +1030,80 @@
 }
 
 .achBullet::before {
-  content: "▸";
+  content: "—";
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--cv-yellow);
-  font-size: 0.4rem;
-  line-height: 1.7;
+  color: var(--ach-accent, var(--cv-yellow));
+  font-size: 0.6rem;
+  line-height: 1.6;
+  font-weight: 700;
 }
 
-/* ── Links row — always visible, pushed to bottom ── */
+/* ── Links row ───────────────────────────────── */
 .achLinks {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 5px;
   flex-shrink: 0;
   margin-top: auto;
-  padding-top: 2px;
+  padding-top: 4px;
 }
 
 .achLinkBtnInner {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .achLinkBtn {
   font-family: var(--font-bangers);
-  font-size: 0.76rem;
-  letter-spacing: 0.16em;
-  color: var(--cv-red);
+  font-size: 0.88rem;
+  letter-spacing: 0.18em;
   text-decoration: none;
-  border: 1.5px solid rgba(196, 30, 0, 0.45);
-  padding: 2px 8px 1px;
+  padding: 5px 12px 4px;
   line-height: 1;
-  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
-  cursor: pointer;
   display: inline-block;
+  cursor: pointer;
+  color: var(--ach-accent, var(--cv-yellow));
+  border: 1.5px solid var(--ach-accent, rgba(245, 208, 32, 0.6));
+  background: rgba(200, 134, 10, 0.07);
+  box-shadow: 0 0 12px rgba(200, 134, 10, 0.08);
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.14s ease;
+}
+
+.achLinks .achLinkBtn:first-child {
+  background: var(--ach-accent, rgba(200, 134, 10, 0.9));
+  color: #0d0b14;
+  border-color: var(--ach-accent, var(--cv-yellow));
+  box-shadow:
+    0 0 16px rgba(200, 134, 10, 0.28),
+    2px 2px 0 rgba(0, 0, 0, 0.55);
 }
 
 .achLinkBtn:hover {
-  background: rgba(196, 30, 0, 0.08);
-  border-color: var(--cv-red);
-  color: #8b1500;
+  transform: translateY(-1px);
+  background: rgba(200, 134, 10, 0.16);
+  border-color: var(--ach-accent, var(--cv-yellow));
+  box-shadow:
+    0 0 20px rgba(200, 134, 10, 0.22),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.achLinks .achLinkBtn:first-child:hover {
+  filter: brightness(1.1);
+  color: #0d0b14;
+}
+
+.achLinkBtn:active {
+  transform: translateY(0px);
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
 
 /* ── Gallery row ─────────────────────────────── */
@@ -1079,7 +1113,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 3px;
   padding: 3px;
-  border-top: 1.5px solid rgba(26, 18, 8, 0.15);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.07);
 }
 
 .achThumb {
@@ -1087,7 +1121,7 @@
   cursor: pointer;
   display: block;
   position: relative;
-  aspect-ratio: 1;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 1px solid rgba(26, 18, 8, 0.14);
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
@@ -1179,23 +1213,24 @@
 }
 
 /* ── Image wrap ─────────────────────────────── */
+/* Wrap shrink-wraps to the image — no fixed dimensions here.
+   Constraints live on the <img> so portrait images never stretch the box. */
 .photoModalImgWrap {
   position: relative;
   z-index: 1;
-  max-width: 78%;
-  max-height: 72%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: 0;
   border: 2px solid rgba(245, 208, 32, 0.35);
   box-shadow: 0 0 60px rgba(245, 208, 32, 0.06), 0 24px 64px rgba(0, 0, 0, 0.8);
 }
 
 .photoModalImg {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  /* Landscape: capped at 78vw wide. Portrait: capped at 72vh tall.
+     Both constraints apply simultaneously — whichever is hit first wins. */
+  max-width: 78vw;
+  max-height: 72vh;
+  width: auto;
+  height: auto;
 }
 
 /* ── Nav arrows — comic chevron (mirrors .sideBtn style) ─────── */

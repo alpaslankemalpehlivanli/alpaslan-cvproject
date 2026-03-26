@@ -112,7 +112,7 @@ export const projects = [
       "Designed for mobile with mechanic-first systems and fast onboarding.",
     ],
     links: [
-      { label: "TRAILER", href: "https://www.youtube.com/watch?v=2goX_wX7Sjc" },
+      { label: "TRAILER", href: "https://youtu.be/3yoQEc8ZdeA?si=O5TWTHybbUXiA5l1" },
     ],
   },
   {
