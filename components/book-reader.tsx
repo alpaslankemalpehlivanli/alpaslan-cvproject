@@ -483,16 +483,12 @@ const CVPageAll = forwardRef<HTMLDivElement, Record<string, never>>(
             <span className={s.cvContactText}>{profile.email}</span>
           </div>
           <div className={s.cvContactItem}>
-            <span className={s.cvContactIcon}><Link2 size={10} strokeWidth={2.5} /></span>
-            <span className={s.cvContactText}>{profile.linkedin}</span>
-          </div>
-          <div className={s.cvContactItem}>
             <span className={s.cvContactIcon}><Globe size={10} strokeWidth={2.5} /></span>
             <span className={s.cvContactText}>{profile.website}</span>
           </div>
           <div className={s.cvContactItem}>
-            <span className={s.cvContactIcon}><MapPin size={10} strokeWidth={2.5} /></span>
-            <span className={s.cvContactText}>{profile.location}</span>
+            <span className={s.cvContactIcon}><Link2 size={10} strokeWidth={2.5} /></span>
+            <span className={s.cvContactText}>{profile.linkedin}</span>
           </div>
         </div>
       </section>

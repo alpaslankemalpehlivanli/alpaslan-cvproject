@@ -1687,46 +1687,46 @@
 ═════════════════════════════════════════════ */
 
 .cvPageAll {
-  padding: 8px 9px;
-  gap: 4px;
+  padding: 7px 9px;
+  gap: 3px;
 }
 
 .cvPageAll .cvHdr {
-  padding: 4px 8px 3px;
+  padding: 3px 8px 2.5px;
   margin-bottom: 2px;
 }
 
 .cvPageAll .cvHdrTxt {
-  font-size: 0.80rem;
+  font-size: 0.87rem;
   letter-spacing: 0.22em;
 }
 
 .cvPageAll .cvHdrTick {
-  font-size: 0.44rem;
+  font-size: 0.48rem;
 }
 
 .cvPageAll .cvBody {
-  padding: 2px 7px 3px;
+  padding: 1.5px 7px 2.5px;
   gap: 1px;
 }
 
 .cvPageAll .cvBold {
-  font-size: 0.68rem;
-  line-height: 1.25;
+  font-size: 0.74rem;
+  line-height: 1.24;
 }
 
 .cvPageAll .cvMuted {
-  font-size: 0.60rem;
-  line-height: 1.22;
+  font-size: 0.65rem;
+  line-height: 1.20;
 }
 
 .cvPageAll .cvLogo {
-  max-height: 32px;
+  max-height: 30px;
 }
 
 .cvPageAll .cvLogoRow {
   gap: 7px;
-  margin-bottom: 2px;
+  margin-bottom: 1.5px;
 }
 
 .cvPageAll .cvLogoMeta {
@@ -1734,18 +1734,18 @@
 }
 
 .cvPageAll .cvBullets {
-  gap: 2px;
-  margin-top: 2px;
+  gap: 1.5px;
+  margin-top: 1.5px;
 }
 
 .cvPageAll .cvBullet {
-  font-size: 0.60rem;
-  line-height: 1.36;
+  font-size: 0.65rem;
+  line-height: 1.34;
   padding-left: 10px;
 }
 
 .cvPageAll .cvBullet::before {
-  font-size: 0.36rem;
+  font-size: 0.38rem;
 }
 
 .cvPageAll .cvSkillGrid {
@@ -1754,27 +1754,27 @@
 }
 
 .cvPageAll .cvSkillTag {
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   padding: 2px 8px 1.5px;
 }
 
 .cvPageAll .cvLangRow {
-  gap: 4px;
+  gap: 3px;
   padding: 1px 0;
 }
 
 .cvPageAll .cvLangCard {
-  padding: 4px 9px 3px;
+  padding: 3.5px 9px 3px;
   min-width: 58px;
   gap: 2px;
 }
 
 .cvPageAll .cvLangName {
-  font-size: 0.80rem;
+  font-size: 0.87rem;
 }
 
 .cvPageAll .cvLangBadge {
-  font-size: 0.50rem;
+  font-size: 0.54rem;
 }
 
 .cvPageAll .cvInterestTags {
@@ -1783,13 +1783,15 @@
 }
 
 .cvPageAll .cvInterestTag {
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   padding: 2px 7px 1.5px;
 }
 
 .cvPageAll .cvContactGrid {
-  padding: 2px 7px 3px;
-  gap: 4px;
+  padding: 1.5px 7px 2.5px;
+  gap: 3.5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .cvPageAll .cvContactItem {
@@ -1802,7 +1804,7 @@
 }
 
 .cvPageAll .cvContactText {
-  font-size: 0.62rem;
+  font-size: 0.67rem;
 }
 
 /* ── cvPageAll mobile overrides ── */
@@ -1816,6 +1818,7 @@
   .cvPageAll .cvInterestTag { font-size: 0.42rem; padding: 1.5px 4px 1px; }
   .cvPageAll .cvLangName { font-size: 0.52rem; }
   .cvPageAll .cvLangBadge { font-size: 0.32rem; }
+  .cvPageAll .cvContactGrid { gap: 3px 6px; }
   .cvPageAll .cvContactText { font-size: 0.38rem; }
   .cvPageAll .cvContactIcon { width: 12px; height: 12px; }
   .cvPageAll .cvLogo { max-height: 20px; }
@@ -1834,6 +1837,7 @@
   .cvPageAll .cvInterestTag { font-size: 0.26rem; padding: 1px 3px 0.5px; }
   .cvPageAll .cvLangName { font-size: 0.32rem; }
   .cvPageAll .cvLangBadge { font-size: 0.20rem; }
+  .cvPageAll .cvContactGrid { gap: 2px 4px; }
   .cvPageAll .cvContactText { font-size: 0.24rem; }
   .cvPageAll .cvContactIcon { width: 8px; height: 8px; }
   .cvPageAll .cvLogo { max-height: 14px; }
