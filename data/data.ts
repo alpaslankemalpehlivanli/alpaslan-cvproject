@@ -65,10 +65,15 @@ export const projects = [
   {
     title: "TUTSAK",
     subtitle: "Narrative Courtroom Puzzle",
+    type: "jam" as const,
+    jamInfo: { name: "AyazJam 2025", rank: "3RD", period: "12/2025" },
+    badges: ["UE5", "Narrative Design", "Level Design", "Systems Design"],
+    description:
+      "A narrative puzzle game about changing a court verdict. Players edit evidence (photos, recordings, statements) to shift the outcome. Small changes create large narrative consequences.",
     bullets: [
-      "A courtroom puzzle game where players reinterpret and replace evidence to alter trial outcomes.",
-      "Built on a butterfly-effect system where small evidential changes produce major narrative shifts.",
-      "Established the core evidence manipulation mechanic and architected the branching consequence logic.",
+      "Butterfly-effect architecture: small evidential swaps produce large narrative divergences.",
+      "Designed core evidence manipulation mechanic and branching consequence logic from scratch.",
+      "Structured level design around player-driven reinterpretation of information.",
     ],
     links: [
       { label: "GAMEPLAY", href: "https://drive.google.com/file/d/19v6xlY8YQ_Qs3_BSc5y-lPItE4TtaV6J/view" },
@@ -79,10 +84,15 @@ export const projects = [
   {
     title: "TRICK OR ADMIT",
     subtitle: "Identity & Deception System Game",
+    type: "jam" as const,
+    jamInfo: { name: "Global Game Jam GGConvention", rank: "1ST", period: "01/2026" },
+    badges: ["UE5", "Game Systems", "Narrative Design"],
+    description:
+      "A Halloween deduction game. As a party security guard, the player questions each character and decides who enters. Guests may lie, so spotting contradictions in answers and behavior is the core challenge.",
     bullets: [
-      "A Halloween-themed masked deduction game centered on hidden identities and suspicion management.",
-      "Tension escalates through structured dialogue and evidence validation rather than randomness.",
-      "Developed the asymmetric identity validation framework and defined suspicion progression rules.",
+      "Tension grows through structured dialogue and evidence validation, with no randomness in the design.",
+      "Built the asymmetric identity validation framework and defined suspicion progression rules.",
+      "Delivered a complete playable build within 48 hours, ranking 1st locally among 60 teams.",
     ],
     links: [
       { label: "PLAY DEMO", href: "https://globalgamejam.org/games/2026/trick-or-admit-2" },
@@ -91,10 +101,15 @@ export const projects = [
   {
     title: "MAGTWINS",
     subtitle: "Asymmetric Co-op Magnetic Puzzle Shooter",
+    type: "independent" as const,
+    jamInfo: null,
+    badges: ["UE5", "Co-op Design", "Puzzle Systems"],
+    description:
+      "A co-op puzzle game built around magnetic powers. Two players control characters with opposite magnetic forces, using attraction and repulsion to move objects, activate mechanisms, and solve puzzles together.",
     bullets: [
-      "A co-op puzzle game featuring two small creatures representing positive and negative magnetic charges.",
-      "Progression relies on attraction–repulsion mechanics requiring synchronized spatial coordination.",
-      "Implemented the polarity rule system and structured the interdependent puzzle framework.",
+      "Progression demands synchronized spatial reasoning with attraction and repulsion as active verbs.",
+      "Authored the polarity rule system and built the interdependent co-op puzzle framework.",
+      "Designed for mobile with mechanic-first systems and fast onboarding.",
     ],
     links: [
       { label: "TRAILER", href: "https://www.youtube.com/watch?v=2goX_wX7Sjc" },
@@ -103,16 +118,20 @@ export const projects = [
   {
     title: "ILUNIA",
     subtitle: "Co-op Psychological Puzzle",
+    type: "independent" as const,
+    jamInfo: null,
+    badges: ["UE5", "Co-op Design", "Puzzle Systems", "Psychological"],
+    description:
+      "A co-op psychological puzzle experience where two players see the world in different ways. Each player receives different pieces of information, making communication essential. Players must describe what they see and work together to understand symbols, messages, and environmental clues.",
     bullets: [
-      "A co-op psychological puzzle experience where two players see the world in different ways.",
-      "Each player receives different pieces of information, so communication becomes essential.",
-      "Players must describe what they see and work together to understand symbols, messages, and environmental clues.",
-      "The game creates a mysterious atmosphere and focuses on cooperation, perception, and shared problem solving.",
+      "Asymmetric perception: two players see different realities and must reconcile them.",
+      "Information gaps force communication: every symbol and clue must be described aloud.",
+      "Mysterious atmosphere built on cooperation, perceptual dissonance, and shared discovery.",
     ],
     links: [
       { label: "GAMEPLAY", href: "https://drive.google.com/file/d/1Q3pJTGQmIhLe-6M33GN-pFGF_WGWgrOr/view?usp=sharing" },
     ],
-  }
+  },
 ];
 
 export const education = [

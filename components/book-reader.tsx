@@ -88,8 +88,8 @@ const ACHIEVEMENT_IMAGES = [
 const PROJECT_IMAGES = [
   {
     header: "/projects/game1/Tutsak_main_h.jpeg",
-    /* courtroom · parchment · legal amber */
-    color: "#9e7009",
+    /* courtroom · cold · slate grey */
+    color: "#6b7280",
     gallery: [
       "/projects/game1/tutsak-h1.jpg",
       "/projects/game1/tutsak-h2.jpg",
@@ -125,8 +125,8 @@ const PROJECT_IMAGES = [
   },
   {
     header: "/projects/game4/Ilunia_main_h.png",
-    /* psychological · dreamlike · deep violet */
-    color: "#6e40a0",
+    /* psychological · nature · forest green */
+    color: "#16a34a",
     gallery: [
       "/projects/game4/ilunia-h1.jpeg",
       "/projects/game4/ilunia-h2.jpeg",
@@ -593,12 +593,19 @@ const ProjectContentPage = forwardRef<HTMLDivElement, ProjectContentPageProps>(
   ({ project, images, color }, ref) => (
     <div ref={ref}>
       <div className={s.projPage} style={{ "--proj-accent": color } as React.CSSProperties}>
-        <div className={s.cvDots} aria-hidden="true" />
 
-        {/* Header image — clean edge, no gradient */}
+        {/* Header image */}
         <div className={s.projHeaderWrap}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={images.header} alt={project.title} className={s.projHeaderImg} />
+          {/* Jam badge overlaid on photo */}
+          {project.jamInfo && (
+            <div className={s.projJamOverlay}>
+              <span className={s.projJamOverlayRank}>{project.jamInfo.rank}</span>
+              <span className={s.projJamOverlayName}>{project.jamInfo.name}</span>
+              <span className={s.projJamOverlayPeriod}>{project.jamInfo.period}</span>
+            </div>
+          )}
         </div>
 
         {/* Big title */}
@@ -606,27 +613,45 @@ const ProjectContentPage = forwardRef<HTMLDivElement, ProjectContentPageProps>(
           <span className={s.projTitleText}>{project.title}</span>
         </div>
 
-        {/* Content: subtitle → bullets → links (CTA) */}
+        {/* Content: subtitle → badges → bullets → links (CTA) */}
         <div className={s.projContent}>
           <div className={s.projBody}>
             <div className={s.projSubtitle}>{project.subtitle}</div>
-            <ul className={s.achBullets}>
+
+            {/* Badge row */}
+            {"badges" in project && (project as { badges: string[] }).badges.length > 0 && (
+              <div className={s.projBadgeRow}>
+                {(project as { badges: string[] }).badges.map((badge, i) => (
+                  <span key={i} className={s.projBadge}>{badge}</span>
+                ))}
+              </div>
+            )}
+
+            {/* Short description */}
+            {"description" in project && project.description && (
+              <p className={s.projDescription}>{(project as { description: string }).description}</p>
+            )}
+
+            {/* Bullets */}
+            <ul className={s.projBullets}>
               {project.bullets.map((b, i) => (
-                <li key={i} className={s.achBullet}>{b}</li>
+                <li key={i} className={s.projBullet}>{b}</li>
               ))}
             </ul>
+
+            {/* CTA links */}
             {project.links.length > 0 && (
-              <div className={s.achLinks}>
+              <div className={s.projLinks}>
                 {project.links.map((lnk, i) => (
                   <a
                     key={i}
                     href={lnk.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={s.achLinkBtn}
+                    className={s.projLinkBtn}
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <span className={s.achLinkBtnInner}>{lnk.label}<ExternalLink size={10} strokeWidth={2.5} /></span>
+                    <span className={s.projLinkBtnInner}>{lnk.label}<ExternalLink size={10} strokeWidth={2.5} /></span>
                   </a>
                 ))}
               </div>

@@ -1280,7 +1280,7 @@
 
 /* ═════════════════════════════════════════════
    PROJECT PAGES
-   Left page  = content (cream, comic style)
+   Left page  = content (dark, cinematic)
    Right page = album (near-black, full-page grid)
 ═════════════════════════════════════════════ */
 
@@ -1288,11 +1288,12 @@
 .projPage {
   width: 100%;
   height: 100%;
-  background-color: var(--cv-cream);
+  background-color: #0d0b14;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  border: 2.5px solid rgba(26, 18, 8, 0.28);
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(var(--proj-accent-rgb, 158,112,9), 0.08) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-size: cover, 200px 200px;
+  border: 2.5px solid rgba(var(--proj-accent-rgb, 158,112,9), 0.22);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -1300,19 +1301,17 @@
   position: relative;
 }
 
-/* Speed lines anchored at header — like profile panel */
+/* Subtle scanline texture over entire page */
 .projPage::before {
   content: "";
   position: absolute;
-  width: 220%;
-  height: 220%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: repeating-conic-gradient(
-    from 0deg at 50% 38%,
-    transparent 0deg 5deg,
-    rgba(26, 18, 8, 0.016) 5deg 5.5deg
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.012) 2px,
+    rgba(255,255,255,0.012) 3px
   );
   pointer-events: none;
   z-index: 0;
@@ -1324,8 +1323,7 @@
   height: 38%;
   position: relative;
   overflow: hidden;
-  /* thin border separates photo from content below */
-  border-bottom: 2.5px solid rgba(26, 18, 8, 0.22);
+  border-bottom: 1.5px solid rgba(var(--proj-accent-rgb, 158,112,9), 0.35);
   z-index: 1;
 }
 
@@ -1337,26 +1335,65 @@
   object-position: center;
 }
 
-/* Diagonal stripe over header — same texture as cover pages */
+/* Gradient vignette at bottom of header — fades into dark page */
 .projHeaderWrap::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    135deg,
-    transparent,
-    transparent 12px,
-    rgba(255, 255, 255, 0.02) 12px,
-    rgba(255, 255, 255, 0.02) 13px
+  background: linear-gradient(
+    to bottom,
+    transparent 55%,
+    rgba(13, 11, 20, 0.72) 100%
   );
   pointer-events: none;
   z-index: 1;
 }
 
-/* ── Big title block — solid accent strip like CV section headers ── */
+/* ── Type tag — overlaid on header image bottom-left ── */
+.projTypeTag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  z-index: 3;
+  font-family: var(--font-space-mono);
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 3px 8px 2px;
+  line-height: 1;
+  border: 1px solid currentColor;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.projTypeTag::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.projTypeTagJam {
+  color: #f5d020;
+  background: rgba(245, 208, 32, 0.12);
+  border-color: rgba(245, 208, 32, 0.55);
+}
+
+.projTypeTagIndep {
+  color: rgba(200, 190, 255, 0.9);
+  background: rgba(120, 100, 220, 0.12);
+  border-color: rgba(120, 100, 220, 0.45);
+}
+
+/* ── Big title block — solid accent strip ── */
 .projTitleWrap {
   flex-shrink: 0;
-  padding: 5px 9px 4px;
+  padding: 5px 10px 4px;
   position: relative;
   line-height: 1;
   background: var(--proj-accent, var(--cv-red));
@@ -1364,20 +1401,19 @@
   z-index: 1;
 }
 
-/* Halftone hatch on right — matches cvHdrHatch pattern */
+/* Halftone hatch on right */
 .projTitleWrap::before {
   content: "";
   position: absolute;
   right: 0;
   top: 0;
-  width: 28%;
+  width: 30%;
   height: 100%;
-  background-image: radial-gradient(circle, rgba(0,0,0,0.18) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(0,0,0,0.22) 1px, transparent 1px);
   background-size: 4px 4px;
   pointer-events: none;
 }
 
-/* Strip replaces thin separator line */
 .projTitleWrap::after {
   content: none;
 }
@@ -1386,26 +1422,26 @@
   display: block;
   font-family: var(--font-bangers);
   font-size: 2rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: #fff;
   line-height: 1;
   text-shadow:
-    1px 1px 0 rgba(0, 0, 0, 0.55),
-    2px 2px 0 rgba(0, 0, 0, 0.22);
-  -webkit-text-stroke: 1.2px rgba(0, 0, 0, 0.28);
+    1px 1px 0 rgba(0, 0, 0, 0.65),
+    3px 3px 0 rgba(0, 0, 0, 0.2);
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.35);
   paint-order: stroke fill;
   position: relative;
   z-index: 1;
   animation: slam-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
 }
 
-/* Diamond tick before title — matches cvHdrTick */
+/* Diamond tick before title */
 .projTitleText::before {
   content: "◆";
-  font-size: 0.44em;
-  margin-right: 0.38em;
+  font-size: 0.42em;
+  margin-right: 0.4em;
   vertical-align: middle;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.5);
   display: inline-block;
 }
 
@@ -1416,28 +1452,229 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .projBody {
-  padding: 0 9px 5px;
+  padding: 6px 10px 6px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   overflow: hidden;
   flex: 1;
 }
 
+/* ── Subtitle ─────────────────────────────────── */
 .projSubtitle {
   font-family: var(--font-space-mono);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: var(--proj-accent, rgba(100, 55, 8, 0.75));
+  color: var(--proj-accent, rgba(245, 208, 32, 0.8));
   text-transform: uppercase;
   line-height: 1.3;
   margin: 0;
-  padding: 2px 0 2px 7px;
-  border-left: 2.5px solid var(--proj-accent, rgba(100, 55, 8, 0.4));
+  padding: 3px 0 3px 8px;
+  border-left: 2.5px solid var(--proj-accent, rgba(245, 208, 32, 0.4));
+  opacity: 0.9;
+}
+
+/* ── Game Jam overlay — bottom of header image ── */
+.projJamOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px 9px;
+  background: linear-gradient(
+    to top,
+    rgba(6, 4, 12, 0.92) 0%,
+    rgba(6, 4, 12, 0.72) 60%,
+    transparent 100%
+  );
+  backdrop-filter: blur(1px);
+}
+
+.projJamOverlayRank {
+  font-family: var(--font-bangers);
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  color: var(--cv-yellow);
+  line-height: 1;
+  text-shadow:
+    0 0 18px rgba(245, 208, 32, 0.6),
+    1px 1px 0 rgba(0, 0, 0, 0.9);
+  flex-shrink: 0;
+}
+
+.projJamOverlayName {
+  font-family: var(--font-space-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.3;
+  flex: 1;
+  min-width: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.projJamOverlayPeriod {
+  font-family: var(--font-space-mono);
+  font-size: 0.5rem;
+  color: rgba(245, 208, 32, 0.55);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* ── Badge row ────────────────────────────────── */
+.projBadgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.projBadge {
+  font-family: var(--font-space-mono);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(220, 215, 240, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  padding: 2px 8px 2px;
+  line-height: 1.7;
+  border-radius: 1px;
+  display: inline-block;
+}
+
+.projBadge:first-child {
+  color: var(--proj-accent, rgba(245, 208, 32, 0.9));
+  border-color: rgba(var(--proj-accent-rgb, 245,208,32), 0.35);
+  background: rgba(var(--proj-accent-rgb, 245,208,32), 0.09);
+}
+
+/* ── Short description paragraph ─────────────── */
+.projDescription {
+  font-family: var(--font-space-mono);
+  font-size: 0.66rem;
+  color: rgba(200, 196, 220, 0.62);
+  line-height: 1.65;
+  margin: 0;
+  padding: 6px 0 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+/* ── Bullets ──────────────────────────────────── */
+.projBullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-height: 0;
+}
+
+.projBullet {
+  font-family: var(--font-space-mono);
+  font-size: 0.72rem;
+  color: rgba(220, 215, 240, 0.82);
+  line-height: 1.55;
+  padding-left: 16px;
+  position: relative;
+  margin: 0;
+}
+
+/* Custom marker — em-dash in accent color */
+.projBullet::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--proj-accent, rgba(245, 208, 32, 0.7));
+  font-size: 0.6rem;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+/* ── CTA Links ────────────────────────────────── */
+.projLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.projLinkBtnInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.projLinkBtn {
+  font-family: var(--font-bangers);
+  font-size: 0.88rem;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+  padding: 5px 12px 4px;
+  line-height: 1;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  color: var(--proj-accent, var(--cv-yellow));
+  border: 1.5px solid var(--proj-accent, rgba(245, 208, 32, 0.6));
+  background: rgba(var(--proj-accent-rgb, 245,208,32), 0.07);
+  box-shadow: 0 0 12px rgba(var(--proj-accent-rgb, 245,208,32), 0.08);
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.14s ease;
+}
+
+/* First link gets filled treatment as primary CTA */
+.projLinks .projLinkBtn:first-child {
+  background: var(--proj-accent, rgba(245, 208, 32, 0.9));
+  color: #0d0b14;
+  border-color: var(--proj-accent, var(--cv-yellow));
+  box-shadow:
+    0 0 16px rgba(var(--proj-accent-rgb, 245,208,32), 0.28),
+    2px 2px 0 rgba(0, 0, 0, 0.55);
+}
+
+.projLinkBtn:hover {
+  transform: translateY(-1px);
+  background: rgba(var(--proj-accent-rgb, 245,208,32), 0.16);
+  border-color: var(--proj-accent, var(--cv-yellow));
+  box-shadow:
+    0 0 20px rgba(var(--proj-accent-rgb, 245,208,32), 0.22),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.projLinks .projLinkBtn:first-child:hover {
+  filter: brightness(1.1);
+  color: #0d0b14;
+}
+
+.projLinkBtn:active {
+  transform: translateY(0px);
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
 
 /* ═════════════════════════════════════════════
