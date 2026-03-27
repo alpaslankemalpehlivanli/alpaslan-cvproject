@@ -6,7 +6,7 @@ import { BookReader } from "./book-reader";
 import s from "./books.module.css";
 
 const BOOKS = [
-  { roman: "I",   label: "PROFILE",      coverImg: "/cover1.png" },
+  { roman: "I",   label: "PROFILE",      coverImg: "/cover1.png", backCoverImg: "/cover1-back.jpeg" },
   { roman: "II",  label: "PROJECTS",     coverImg: "/cover2.png", backCoverImg: "/cover2-back.jpeg" },
   { roman: "III", label: "ACHIEVEMENTS", coverImg: "/cover3.png" },
 ];
