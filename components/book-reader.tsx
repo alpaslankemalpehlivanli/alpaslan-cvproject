@@ -120,7 +120,7 @@ const PROJECT_IMAGES = [
       "/projects/game3/magtwin-h2.png",
       "/projects/game3/magtwin-h3.png",
       "/projects/game3/magtwin-h4.png",
-      "/projects/game3/magtwin-h5.png",
+      "/projects/game3/magtwin-h5.jpeg",
     ],
   },
   {
@@ -138,7 +138,7 @@ const PROJECT_IMAGES = [
       "/projects/game4/ilunia-v6.jpeg",
       "/projects/game4/ilunia-v7.jpeg",
       "/projects/game4/ilunia-v8.jpeg",
-      "/projects/game4/ilunia-v9.png",
+      "/projects/game4/ilunia-v9.jpeg",
     ],
   },
 ];
