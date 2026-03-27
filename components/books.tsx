@@ -7,7 +7,7 @@ import s from "./books.module.css";
 
 const BOOKS = [
   { roman: "I",   label: "PROFILE",      coverImg: "/cover1.png" },
-  { roman: "II",  label: "PROJECTS",     coverImg: "/cover2.png" },
+  { roman: "II",  label: "PROJECTS",     coverImg: "/cover2.jpeg" },
   { roman: "III", label: "ACHIEVEMENTS", coverImg: "/cover3.png" },
 ];
 
