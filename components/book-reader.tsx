@@ -790,13 +790,14 @@ interface Props {
   roman: string;
   label: string;
   coverImg?: string;
+  backCoverImg?: string;
   isProfile?: boolean;
   isAchievements?: boolean;
   isProjects?: boolean;
   onClose: () => void;
 }
 
-export function BookReader({ roman, label, coverImg, isProfile, isAchievements, isProjects, onClose }: Props) {
+export function BookReader({ roman, label, coverImg, backCoverImg, isProfile, isAchievements, isProjects, onClose }: Props) {
   const bookRef = useRef<any>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const pageSize = usePageSize();
@@ -931,7 +932,7 @@ export function BookReader({ roman, label, coverImg, isProfile, isAchievements, 
             >
               <CoverPage roman={roman} label={label} coverImg={coverImg} />
               {...innerPages}
-              <CoverPage roman={roman} label={label} coverImg={coverImg} onClose={onClose} />
+              <CoverPage roman={roman} label={label} coverImg={backCoverImg ?? coverImg} onClose={onClose} />
             </HTMLFlipBook>
           </div>
 
