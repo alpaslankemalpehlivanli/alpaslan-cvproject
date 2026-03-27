@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import { Books } from "./books";
 import s from "./home-client.module.css";
 
@@ -36,6 +36,32 @@ export function HomeClient() {
           <div className={s.roleBadge}>
             <span className={s.roleText}>GAME DESIGNER</span>
           </div>
+
+          {/* CV download — slapped onto the panel after entering */}
+          <AnimatePresence>
+            {entered && (
+              <motion.a
+                key="cv-tag"
+                href="/Alpaslan Kemal Game Design CV.pdf"
+                download
+                className={s.cvDownloadBtn}
+                aria-label="Download CV"
+                initial={{ opacity: 0, x: 32, y: -16, rotate: -20, scale: 0.82 }}
+                animate={{ opacity: 1, x: 0, y: 0, rotate: -10, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.88, transition: { duration: 0.15 } }}
+                transition={{ type: "spring", stiffness: 170, damping: 15, delay: 0.9 }}
+                whileHover={{
+                  rotate: -5,
+                  scale: 1.08,
+                  transition: { type: "spring", stiffness: 380, damping: 20 },
+                }}
+                whileTap={{ scale: 0.93, rotate: -14 }}
+              >
+                <Download size={12} strokeWidth={2} aria-hidden="true" />
+                <span>CV</span>
+              </motion.a>
+            )}
+          </AnimatePresence>
         </div>
       </header>
 

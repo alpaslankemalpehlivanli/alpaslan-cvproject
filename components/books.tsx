@@ -6,9 +6,9 @@ import { BookReader } from "./book-reader";
 import s from "./books.module.css";
 
 const BOOKS = [
-  { roman: "I",   label: "PROFILE"      },
-  { roman: "II",  label: "PROJECTS"     },
-  { roman: "III", label: "ACHIEVEMENTS" },
+  { roman: "I",   label: "PROFILE",      coverImg: "/cover1.png" },
+  { roman: "II",  label: "PROJECTS",     coverImg: "/cover2.png" },
+  { roman: "III", label: "ACHIEVEMENTS", coverImg: "/cover3.png" },
 ];
 
 export function Books() {
@@ -46,12 +46,10 @@ export function Books() {
             }}
             whileTap={{ scale: 0.94 }}
           >
-            <div className={s.coverFace}>
-              <div className={s.coverInner}>
-                <span className={s.coverRoman}>{book.roman}</span>
-                <span className={s.coverLabel}>{book.label}</span>
-              </div>
-            </div>
+            <div
+              className={s.coverFace}
+              style={{ backgroundImage: `url('${book.coverImg}')` }}
+            />
           </motion.button>
         ))}
       </div>
@@ -62,6 +60,7 @@ export function Books() {
             key={selected}
             roman={BOOKS[selected].roman}
             label={BOOKS[selected].label}
+            coverImg={BOOKS[selected].coverImg}
             isProfile={selected === 0}
             isProjects={selected === 1}
             isAchievements={selected === 2}

@@ -144,12 +144,15 @@ const PROJECT_IMAGES = [
 ];
 
 /* ── Cover ──────────────────────────────────────────────────── */
-const CoverPage = forwardRef<HTMLDivElement, { roman: string; label: string; onClose?: () => void }>(
-  ({ roman, label, onClose }, ref) => (
+const CoverPage = forwardRef<HTMLDivElement, { roman: string; label: string; coverImg?: string; onClose?: () => void }>(
+  ({ roman, label, coverImg, onClose }, ref) => (
     /* outer: library sets display:block + height inline on the ref div */
     <div ref={ref}>
-      <div className={s.cover}>
-        {!onClose && (
+      <div
+        className={s.cover}
+        style={coverImg ? { backgroundImage: `url('${coverImg}')` } : undefined}
+      >
+        {!coverImg && !onClose && (
           <div className={s.coverFrame}>
             <span className={s.coverRoman}>{roman}</span>
             <span className={s.coverLabel}>{label}</span>
@@ -786,13 +789,14 @@ function PhotoModal({ images, currentIdx, onNext, onPrev, onClose }: PhotoModalP
 interface Props {
   roman: string;
   label: string;
+  coverImg?: string;
   isProfile?: boolean;
   isAchievements?: boolean;
   isProjects?: boolean;
   onClose: () => void;
 }
 
-export function BookReader({ roman, label, isProfile, isAchievements, isProjects, onClose }: Props) {
+export function BookReader({ roman, label, coverImg, isProfile, isAchievements, isProjects, onClose }: Props) {
   const bookRef = useRef<any>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const { w: PAGE_W, h: PAGE_H } = usePageSize();
@@ -911,9 +915,9 @@ export function BookReader({ roman, label, isProfile, isAchievements, isProjects
               className=""
               style={{}}
             >
-              <CoverPage roman={roman} label={label} />
+              <CoverPage roman={roman} label={label} coverImg={coverImg} />
               {...innerPages}
-              <CoverPage roman={roman} label={label} onClose={onClose} />
+              <CoverPage roman={roman} label={label} coverImg={coverImg} onClose={onClose} />
             </HTMLFlipBook>
           </div>
 

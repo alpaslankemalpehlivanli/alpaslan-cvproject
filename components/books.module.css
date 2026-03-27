@@ -31,12 +31,11 @@
   position: relative;
   width: 240px;
   height: 340px;
-  background: linear-gradient(160deg, #1c1508 0%, #110d05 55%, #1a1108 100%);
+  background-color: #110d05;
+  background-size: cover;
+  background-position: center;
   border: 2px solid rgba(245, 208, 32, 0.4);
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
   /* Stacked-pages edge shadow */
   box-shadow:
@@ -47,20 +46,6 @@
   transform-origin: left center;
   transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
   will-change: transform;
-}
-
-/* Diagonal stripe texture on cover */
-.coverFace::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    135deg,
-    transparent,
-    transparent 12px,
-    rgba(245, 208, 32, 0.025) 12px,
-    rgba(245, 208, 32, 0.025) 13px
-  );
 }
 
 /* Hover: left-hinge open suggestion */

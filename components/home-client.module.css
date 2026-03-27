@@ -92,6 +92,38 @@
   color: var(--cv-ink);
 }
 
+/* ── CV Download ─────────────────────────────── */
+.cvDownloadBtn {
+  position: absolute;
+  right: 3rem;
+  top: calc(0.6rem + clamp(1.2rem, 4vw, 3.2rem));
+  z-index: 10;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.38em 0.9em 0.34em;
+
+  font-family: var(--font-bangers);
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  color: rgba(245, 208, 32, 0.7);
+  text-decoration: none;
+  cursor: pointer;
+
+  border: 1.5px solid rgba(245, 208, 32, 0.35);
+  background: rgba(4, 4, 4, 0.75);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.9);
+
+  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cvDownloadBtn:hover {
+  color: var(--cv-yellow);
+  border-color: rgba(245, 208, 32, 0.8);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.9), 0 0 18px rgba(245, 208, 32, 0.18);
+}
+
 /* ── Main ────────────────────────────────────── */
 .main {
   position: relative;
@@ -171,6 +203,8 @@
   .header { padding: 1.2rem 1.25rem 0; }
   .panel  { padding: 1.4rem 2rem 1.4rem; }
   .main   { padding: 1rem 1.25rem 2.5rem; }
+
+  .cvDownloadBtn { right: 2rem; top: calc(0.6rem + clamp(1.2rem, 4vw, 3.2rem)); }
 }
 
 /* ── Mobile: ≤ 480px ─────────────────────────── */
@@ -188,4 +222,6 @@
   /* Tighter button text so it doesn't overflow viewport */
   .enterBtnText   { letter-spacing: 0.15em; }
   .enterBtnInner  { padding: 0.52em 1.6em; }
+
+  .cvDownloadBtn  { right: 1rem; top: calc(0.6rem + clamp(1.2rem, 4vw, 3.2rem)); font-size: 0.75rem; }
 }

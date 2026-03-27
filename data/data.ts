@@ -40,6 +40,7 @@ export const achievements = [
     period: "12/2025",
     bullets: [
       "Placed 3rd among 50 teams at AyazJam Game Jam with a narrative-driven courtroom game (TUTSAK).",
+      "Collaborated with a multidisciplinary team to prototype and deliver a complete game under time constraints.",
       "Designed core game and level mechanics focused on evidence manipulation and player choice.",
     ],
     links: [
@@ -53,7 +54,7 @@ export const achievements = [
     rank: "2ND",
     period: "11/2024 – 05/2025",
     bullets: [
-      "Developed an innovative VR-based beauty and care solution.",
+      "Designed a recommendation system that provides users with a personalized care experience in a virtual environment.",
       "Placed 2nd among 200 teams in the Istanbul finals, selected as one of the top 4 finalist teams.",
     ],
     links: [
@@ -101,7 +102,7 @@ export const projects = [
     ],
   },
   {
-    title: "MAGTWINS",
+    title: "MAGTWIN",
     subtitle: "Asymmetric Co-op Magnetic Puzzle Shooter",
     type: "independent" as const,
     jamInfo: null,

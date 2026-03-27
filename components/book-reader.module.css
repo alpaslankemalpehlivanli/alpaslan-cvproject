@@ -159,7 +159,9 @@
 .cover {
   width: 100%;
   height: 100%;        /* fills the library-controlled outer div */
-  background: linear-gradient(160deg, #1c1508 0%, #110d05 55%, #1a1108 100%);
+  background-color: #110d05;
+  background-size: cover;
+  background-position: center;
   border: 2.5px solid rgba(245, 208, 32, 0.55);
   box-sizing: border-box;
   display: flex;
@@ -167,19 +169,6 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-}
-
-.cover::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    135deg,
-    transparent,
-    transparent 12px,
-    rgba(245, 208, 32, 0.025) 12px,
-    rgba(245, 208, 32, 0.025) 13px
-  );
 }
 
 .coverFrame {
@@ -448,7 +437,7 @@
 .cvSecWork .cvBullets {
   flex: 1;
   justify-content: space-evenly;
-  gap: 0;       /* spacing via space-evenly, not gap */
+  gap: 4px;
 }
 
 /* Generic grow helper */
@@ -653,16 +642,18 @@
   font-size: 0.76rem;
   color: rgba(26, 18, 8, 0.84);
   line-height: 1.52;
-  padding-left: 16px;
+  padding: 6px 10px 6px 22px;
   position: relative;
   margin: 0;
+  background: rgba(26, 18, 8, 0.04);
+  border: 1.5px solid rgba(26, 18, 8, 0.14);
 }
 
 .cvBullet::before {
   content: "▸";
   position: absolute;
-  left: 0;
-  top: 3px;
+  left: 8px;
+  top: 7px;
   color: var(--cv-red);
   font-size: 0.55rem;
   line-height: 1.4;
@@ -2036,11 +2027,13 @@
 .cvPageAll .cvBullet {
   font-size: 0.65rem;
   line-height: 1.34;
-  padding-left: 10px;
+  padding: 3px 7px 3px 14px;
 }
 
 .cvPageAll .cvBullet::before {
   font-size: 0.38rem;
+  left: 5px;
+  top: 5px;
 }
 
 .cvPageAll .cvSkillGrid {
@@ -2106,7 +2099,7 @@
 @media (max-width: 700px) {
   .cvPageAll { padding: 6px 7px; gap: 3px; }
   .cvPageAll .cvHdrTxt { font-size: 0.52rem; letter-spacing: 0.14em; }
-  .cvPageAll .cvBullet { font-size: 0.38rem; line-height: 1.28; }
+  .cvPageAll .cvBullet { font-size: 0.38rem; line-height: 1.28; padding: 2px 5px 2px 10px; }
   .cvPageAll .cvBold   { font-size: 0.44rem; }
   .cvPageAll .cvMuted  { font-size: 0.38rem; }
   .cvPageAll .cvSkillTag { font-size: 0.42rem; padding: 1.5px 5px 1px; }
@@ -2125,7 +2118,7 @@
   .cvPageAll .cvHdrTxt { font-size: 0.34rem; letter-spacing: 0.10em; }
   .cvPageAll .cvHdrTick { font-size: 0.28rem; }
   .cvPageAll .cvBody { padding: 1px 4px 2px; }
-  .cvPageAll .cvBullet { font-size: 0.25rem; line-height: 1.25; padding-left: 6px; }
+  .cvPageAll .cvBullet { font-size: 0.25rem; line-height: 1.25; padding: 1.5px 3px 1.5px 8px; }
   .cvPageAll .cvBold   { font-size: 0.28rem; }
   .cvPageAll .cvMuted  { font-size: 0.24rem; }
   .cvPageAll .cvSkillTag { font-size: 0.26rem; padding: 1px 3px 0.5px; }
@@ -2156,8 +2149,8 @@
   .cvText           { font-size: 0.57rem; }
   .cvMuted          { font-size: 0.51rem; }
   .cvBullets        { gap: 3px; margin-top: 3px; }
-  .cvBullet         { font-size: 0.54rem; line-height: 1.38; padding-left: 11px; }
-  .cvBullet::before { font-size: 0.40rem; }
+  .cvBullet         { font-size: 0.54rem; line-height: 1.38; padding: 4px 8px 4px 18px; }
+  .cvBullet::before { font-size: 0.40rem; left: 6px; top: 5px; }
 
   /* Education page — tablet */
   .cvEduBlock       { gap: 16px; padding: 16px 10px 0; }
@@ -2193,8 +2186,8 @@
   .cvText           { font-size: 0.38rem; }
   .cvMuted          { font-size: 0.34rem; }
   .cvBullets        { gap: 1.5px; margin-top: 1.5px; }
-  .cvBullet         { font-size: 0.36rem; line-height: 1.3; padding-left: 7px; }
-  .cvBullet::before { font-size: 0.28rem; }
+  .cvBullet         { font-size: 0.36rem; line-height: 1.3; padding: 2.5px 5px 2.5px 11px; }
+  .cvBullet::before { font-size: 0.28rem; left: 4px; top: 3.5px; }
 
   /* Education page — small mobile */
   .cvEduBlock       { gap: 8px; padding: 8px 6px 0; }
