@@ -24,7 +24,7 @@ const HTMLFlipBook = dynamic(() => import("react-pageflip"), {
 }) as any;
 
 function usePageSize() {
-  const [size, setSize] = useState({ w: 420, h: 600 });
+  const [size, setSize] = useState<{ w: number; h: number } | null>(null);
   useEffect(() => {
     const update = () => {
       const vw = window.innerWidth;
@@ -799,9 +799,14 @@ interface Props {
 export function BookReader({ roman, label, coverImg, isProfile, isAchievements, isProjects, onClose }: Props) {
   const bookRef = useRef<any>(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const { w: PAGE_W, h: PAGE_H } = usePageSize();
+  const pageSize = usePageSize();
+  const [bookReady, setBookReady] = useState(false);
+  useEffect(() => { setBookReady(false); }, [pageSize]);
   /* Unified photo modal — stores the images array directly for any book */
   const [photoModal, setPhotoModal] = useState<{ images: string[]; currentIdx: number } | null>(null);
+
+  if (!pageSize) return null;
+  const { w: PAGE_W, h: PAGE_H } = pageSize;
 
   const totalPages = isAchievements
     ? ACHIEVEMENTS_TOTAL_PAGES
@@ -885,7 +890,15 @@ export function BookReader({ roman, label, coverImg, isProfile, isAchievements, 
             <ChevronLeft size={28} strokeWidth={3} />
           </button>
 
-          <div className={s.bookWrap} style={{ width: PAGE_W * 2, height: PAGE_H }}>
+          <div
+            className={s.bookWrap}
+            style={{
+              width: PAGE_W * 2,
+              height: PAGE_H,
+              opacity: bookReady ? 1 : 0,
+              transition: "opacity 0.18s ease",
+            }}
+          >
             <HTMLFlipBook
               key={`${PAGE_W}x${PAGE_H}`}
               ref={bookRef}
@@ -912,6 +925,7 @@ export function BookReader({ roman, label, coverImg, isProfile, isAchievements, 
               startPage={0}
               renderOnlyPageLengthChange={false}
               onFlip={(e: any) => setCurrentPage(e.data)}
+              onInit={() => setBookReady(true)}
               className=""
               style={{}}
             >
