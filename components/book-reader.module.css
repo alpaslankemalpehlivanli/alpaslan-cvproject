@@ -406,15 +406,6 @@
   position: relative;
 }
 
-/* Ben-Day halftone dots */
-.cvDots {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(26,18,8,0.07) 1px, transparent 1px);
-  background-size: 9px 9px;
-  pointer-events: none;
-}
-
 /* ── Section ────────────────────────────────── */
 .cvSec {
   flex-shrink: 0;
@@ -611,14 +602,6 @@
   margin: 0;
 }
 
-.cvText {
-  font-family: var(--font-jetbrains);
-  font-size: 0.80rem;
-  color: rgba(26, 18, 8, 0.80);
-  line-height: 1.35;
-  margin: 0;
-}
-
 .cvMuted {
   font-family: var(--font-jetbrains);
   font-size: 0.72rem;
@@ -657,13 +640,6 @@
   color: var(--cv-red);
   font-size: 0.55rem;
   line-height: 1.4;
-}
-
-/* ── Skills inline labels ───────────────────── */
-.cvTag {
-  font-weight: 700;
-  color: var(--cv-red);
-  letter-spacing: 0.05em;
 }
 
 /* ── Interest tags ───────────────────────────── */
@@ -706,40 +682,6 @@
   border-color: rgba(245, 208, 32, 0.4);
   color: var(--cv-yellow);
   box-shadow: 2px 2px 0 rgba(245, 208, 32, 0.2);
-}
-
-/* ── Languages inline ───────────────────────── */
-.cvLangLv {
-  color: rgba(100, 55, 8, 0.72);
-}
-
-.cvSep {
-  color: rgba(26, 18, 8, 0.28);
-}
-
-/* ── Single-row body (contact) ──────────────── */
-.cvBodyRow {
-  padding: 0 7px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-  z-index: 1;
-  font-size: 0.47rem;
-  color: rgba(26, 18, 8, 0.80);
-}
-
-/* ── Contact icons ──────────────────────────── */
-.cvIcon {
-  display: inline-block;
-  width: 15px;
-  font-size: 0.52rem;
-  color: rgba(100, 55, 8, 0.70);
-  line-height: 1.5;
 }
 
 /* ── Skills grid (CVPage2) ───────────────────── */
@@ -1396,47 +1338,6 @@
   );
   pointer-events: none;
   z-index: 1;
-}
-
-/* ── Type tag — overlaid on header image bottom-left ── */
-.projTypeTag {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  z-index: 3;
-  font-family: var(--font-jetbrains);
-  font-size: 0.54rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 3px 8px 2px;
-  line-height: 1;
-  border: 1px solid currentColor;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.projTypeTag::before {
-  content: "";
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: currentColor;
-  flex-shrink: 0;
-}
-
-.projTypeTagJam {
-  color: #f5d020;
-  background: rgba(245, 208, 32, 0.12);
-  border-color: rgba(245, 208, 32, 0.55);
-}
-
-.projTypeTagIndep {
-  color: rgba(200, 190, 255, 0.9);
-  background: rgba(120, 100, 220, 0.12);
-  border-color: rgba(120, 100, 220, 0.45);
 }
 
 /* ── Big title block — solid accent strip ── */
@@ -2096,116 +1997,225 @@
 }
 
 /* ── cvPageAll mobile overrides ── */
+/* Page sizes: 360×514 portrait (≤700px) · 300×428 portrait (≤480px) */
 @media (max-width: 700px) {
-  .cvPageAll { padding: 6px 7px; gap: 3px; }
-  .cvPageAll .cvHdrTxt { font-size: 0.52rem; letter-spacing: 0.14em; }
-  .cvPageAll .cvBullet { font-size: 0.38rem; line-height: 1.28; padding: 2px 5px 2px 10px; }
-  .cvPageAll .cvBold   { font-size: 0.44rem; }
-  .cvPageAll .cvMuted  { font-size: 0.38rem; }
-  .cvPageAll .cvSkillTag { font-size: 0.42rem; padding: 1.5px 5px 1px; }
-  .cvPageAll .cvInterestTag { font-size: 0.42rem; padding: 1.5px 4px 1px; }
-  .cvPageAll .cvLangName { font-size: 0.52rem; }
-  .cvPageAll .cvLangBadge { font-size: 0.32rem; }
-  .cvPageAll .cvContactGrid { gap: 3px 6px; }
-  .cvPageAll .cvContactText { font-size: 0.38rem; }
-  .cvPageAll .cvContactIcon { width: 12px; height: 12px; }
-  .cvPageAll .cvLogo { max-height: 20px; }
+  .cvPageAll { padding: 8px 9px; gap: 4px; }
+  .cvPageAll .cvHdrTxt { font-size: 0.68rem; letter-spacing: 0.18em; }
+  .cvPageAll .cvBullet { font-size: 0.50rem; line-height: 1.30; padding: 2.5px 6px 2.5px 12px; }
+  .cvPageAll .cvBold   { font-size: 0.57rem; }
+  .cvPageAll .cvMuted  { font-size: 0.50rem; }
+  .cvPageAll .cvSkillTag { font-size: 0.55rem; padding: 2px 6px 1.5px; }
+  .cvPageAll .cvInterestTag { font-size: 0.55rem; padding: 2px 5px 1.5px; }
+  .cvPageAll .cvLangName { font-size: 0.67rem; }
+  .cvPageAll .cvLangBadge { font-size: 0.42rem; }
+  .cvPageAll .cvContactGrid { gap: 4px 7px; }
+  .cvPageAll .cvContactText { font-size: 0.52rem; }
+  .cvPageAll .cvContactIcon { width: 13px; height: 13px; }
+  .cvPageAll .cvLogo { max-height: 24px; }
 }
 
 @media (max-width: 480px) {
-  .cvPageAll { padding: 3px 4px; gap: 2px; }
-  .cvPageAll .cvHdr { padding: 2px 4px 1.5px; margin-bottom: 1px; }
-  .cvPageAll .cvHdrTxt { font-size: 0.34rem; letter-spacing: 0.10em; }
-  .cvPageAll .cvHdrTick { font-size: 0.28rem; }
-  .cvPageAll .cvBody { padding: 1px 4px 2px; }
-  .cvPageAll .cvBullet { font-size: 0.25rem; line-height: 1.25; padding: 1.5px 3px 1.5px 8px; }
-  .cvPageAll .cvBold   { font-size: 0.28rem; }
-  .cvPageAll .cvMuted  { font-size: 0.24rem; }
-  .cvPageAll .cvSkillTag { font-size: 0.26rem; padding: 1px 3px 0.5px; }
-  .cvPageAll .cvInterestTag { font-size: 0.26rem; padding: 1px 3px 0.5px; }
-  .cvPageAll .cvLangName { font-size: 0.32rem; }
-  .cvPageAll .cvLangBadge { font-size: 0.20rem; }
-  .cvPageAll .cvContactGrid { gap: 2px 4px; }
-  .cvPageAll .cvContactText { font-size: 0.24rem; }
-  .cvPageAll .cvContactIcon { width: 8px; height: 8px; }
-  .cvPageAll .cvLogo { max-height: 14px; }
+  .cvPageAll { padding: 5px 7px; gap: 3px; }
+  .cvPageAll .cvHdr { padding: 2px 5px 2px; margin-bottom: 1.5px; }
+  .cvPageAll .cvHdrTxt { font-size: 0.59rem; letter-spacing: 0.14em; }
+  .cvPageAll .cvHdrTick { font-size: 0.36rem; }
+  .cvPageAll .cvBody { padding: 1px 5px 2px; }
+  .cvPageAll .cvBullet { font-size: 0.44rem; line-height: 1.28; padding: 2px 5px 2px 10px; }
+  .cvPageAll .cvBold   { font-size: 0.50rem; }
+  .cvPageAll .cvMuted  { font-size: 0.44rem; }
+  .cvPageAll .cvSkillTag { font-size: 0.49rem; padding: 1.5px 5px 1px; }
+  .cvPageAll .cvInterestTag { font-size: 0.49rem; padding: 1.5px 4px 1px; }
+  .cvPageAll .cvLangName { font-size: 0.59rem; }
+  .cvPageAll .cvLangBadge { font-size: 0.37rem; }
+  .cvPageAll .cvContactGrid { gap: 3px 5px; }
+  .cvPageAll .cvContactText { font-size: 0.46rem; }
+  .cvPageAll .cvContactIcon { width: 10px; height: 10px; }
+  .cvPageAll .cvLogo { max-height: 18px; }
 }
 
 /* ═════════════════════════════════════════════
    CV PAGE — MOBILE OVERRIDES
-   Page sizes: 270×385 (≤700px) · 155×221 (≤480px)
+   Page sizes: 360×514 portrait (≤700px) · 300×428 portrait (≤480px)
 ═════════════════════════════════════════════ */
 
 @media (max-width: 700px) {
-  .cvPage           { padding: 12px; gap: 7px; }
-  .cvHdr            { padding: 5px 8px 4px; margin-bottom: 4px; }
-  .cvHdrTxt         { font-size: 0.75rem; letter-spacing: 0.18em; }
-  .cvHdrTick        { font-size: 0.50rem; }
-  .cvBody           { padding: 1px 7px 4px; gap: 2px; }
-  .cvLogo           { max-height: 44px; }
-  .cvLogoRow        { gap: 8px; margin-bottom: 3px; }
-  .cvLogoMeta       { gap: 1px; }
-  .cvBold           { font-size: 0.60rem; }
-  .cvText           { font-size: 0.57rem; }
-  .cvMuted          { font-size: 0.51rem; }
-  .cvBullets        { gap: 3px; margin-top: 3px; }
-  .cvBullet         { font-size: 0.54rem; line-height: 1.38; padding: 4px 8px 4px 18px; }
-  .cvBullet::before { font-size: 0.40rem; left: 6px; top: 5px; }
+  .cvPage           { padding: 14px; gap: 8px; }
+  .cvHdr            { padding: 6px 10px 5px; margin-bottom: 5px; }
+  .cvHdrTxt         { font-size: 0.90rem; letter-spacing: 0.20em; }
+  .cvHdrTick        { font-size: 0.54rem; }
+  .cvBody           { padding: 2px 8px 5px; gap: 3px; }
+  .cvLogo           { max-height: 54px; }
+  .cvLogoRow        { gap: 12px; margin-bottom: 4px; }
+  .cvLogoMeta       { gap: 2px; }
+  .cvBold           { font-size: 0.72rem; }
+  .cvMuted          { font-size: 0.62rem; }
+  .cvBullets        { gap: 4px; margin-top: 4px; }
+  .cvBullet         { font-size: 0.65rem; line-height: 1.42; padding: 5px 9px 5px 20px; }
+  .cvBullet::before { font-size: 0.47rem; left: 7px; top: 6px; }
 
-  /* Education page — tablet */
-  .cvEduBlock       { gap: 16px; padding: 16px 10px 0; }
-  .cvEduLogo        { max-width: 68%; max-height: 64px; }
-  .cvEduInstitution { font-size: 1.1rem; }
-  .cvEduDegree      { font-size: 0.59rem; }
-  .cvEduPeriod      { font-size: 0.54rem; }
+  /* Education page — tablet portrait */
+  .cvEduBlock       { gap: 20px; padding: 22px 13px 0; }
+  .cvEduLogo        { max-width: 68%; max-height: 84px; }
+  .cvEduInstitution { font-size: 1.33rem; }
+  .cvEduDegree      { font-size: 0.70rem; }
+  .cvEduPeriod      { font-size: 0.65rem; }
 
-  .cvInterestTags   { gap: 3px; padding: 2px 0; }
-  .cvInterestTag    { font-size: 0.65rem; padding: 3px 7px 2px; }
-  .cvSkillGrid      { gap: 3px; }
-  .cvSkillTag       { font-size: 0.66rem; padding: 3px 9px 2px; }
-  .cvLangRow        { gap: 5px; padding: 2px 0; }
-  .cvLangCard       { padding: 6px 10px 5px; min-width: 55px; }
-  .cvLangName       { font-size: 0.82rem; }
-  .cvLangBadge      { font-size: 0.52rem; }
-  .cvContactGrid    { gap: 5px; padding: 3px 7px 4px; }
-  .cvContactItem    { gap: 6px; }
-  .cvContactIcon    { width: 17px; height: 17px; font-size: 0.60rem; }
-  .cvContactText    { font-size: 0.56rem; }
+  .cvInterestTags   { gap: 4px; padding: 3px 0; }
+  .cvInterestTag    { font-size: 0.77rem; padding: 4px 10px 3px; }
+  .cvSkillGrid      { gap: 4px; }
+  .cvSkillTag       { font-size: 0.79rem; padding: 4px 12px 3px; }
+  .cvLangRow        { gap: 6px; padding: 3px 0; }
+  .cvLangCard       { padding: 8px 14px 7px; min-width: 66px; }
+  .cvLangName       { font-size: 0.99rem; }
+  .cvLangBadge      { font-size: 0.60rem; }
+  .cvContactGrid    { gap: 6px; padding: 4px 9px 5px; }
+  .cvContactItem    { gap: 8px; }
+  .cvContactIcon    { width: 20px; height: 20px; font-size: 0.64rem; }
+  .cvContactText    { font-size: 0.67rem; }
 }
 
 @media (max-width: 480px) {
-  .cvPage           { padding: 6px; gap: 4px; }
-  .cvHdr            { padding: 3px 5px 2px; margin-bottom: 2px; }
-  .cvHdrTxt         { font-size: 0.48rem; letter-spacing: 0.12em; }
-  .cvHdrTick        { font-size: 0.35rem; }
-  .cvBody           { padding: 0 4px 2px; gap: 1px; }
-  .cvLogo           { max-height: 24px; }
-  .cvLogoRow        { gap: 4px; margin-bottom: 2px; }
-  .cvLogoMeta       { gap: 0; }
-  .cvBold           { font-size: 0.40rem; }
-  .cvText           { font-size: 0.38rem; }
-  .cvMuted          { font-size: 0.34rem; }
-  .cvBullets        { gap: 1.5px; margin-top: 1.5px; }
-  .cvBullet         { font-size: 0.36rem; line-height: 1.3; padding: 2.5px 5px 2.5px 11px; }
-  .cvBullet::before { font-size: 0.28rem; left: 4px; top: 3.5px; }
+  .cvPage           { padding: 10px; gap: 5px; }
+  .cvHdr            { padding: 4px 7px 3.5px; margin-bottom: 3px; }
+  .cvHdrTxt         { font-size: 0.75rem; letter-spacing: 0.16em; }
+  .cvHdrTick        { font-size: 0.44rem; }
+  .cvBody           { padding: 1px 6px 4px; gap: 2px; }
+  .cvLogo           { max-height: 44px; }
+  .cvLogoRow        { gap: 9px; margin-bottom: 3px; }
+  .cvLogoMeta       { gap: 1px; }
+  .cvBold           { font-size: 0.60rem; }
+  .cvMuted          { font-size: 0.51rem; }
+  .cvBullets        { gap: 2.5px; margin-top: 2.5px; }
+  .cvBullet         { font-size: 0.54rem; line-height: 1.36; padding: 4px 7px 4px 16px; }
+  .cvBullet::before { font-size: 0.38rem; left: 5px; top: 5px; }
 
-  /* Education page — small mobile */
-  .cvEduBlock       { gap: 8px; padding: 8px 6px 0; }
-  .cvEduLogo        { max-width: 65%; max-height: 36px; }
-  .cvEduInstitution { font-size: 0.62rem; }
-  .cvEduDegree      { font-size: 0.34rem; }
-  .cvEduPeriod      { font-size: 0.31rem; }
+  /* Education page — small mobile portrait */
+  .cvEduBlock       { gap: 14px; padding: 16px 10px 0; }
+  .cvEduLogo        { max-width: 65%; max-height: 64px; }
+  .cvEduInstitution { font-size: 1.10rem; }
+  .cvEduDegree      { font-size: 0.58rem; }
+  .cvEduPeriod      { font-size: 0.54rem; }
 
-  .cvInterestTags   { gap: 2px; padding: 1px 0; }
-  .cvInterestTag    { font-size: 0.42rem; padding: 1.5px 4px 1px; }
-  .cvSkillGrid      { gap: 2px; }
-  .cvSkillTag       { font-size: 0.43rem; padding: 2px 5px 1.5px; }
-  .cvLangRow        { gap: 3px; padding: 1px 0; }
-  .cvLangCard       { padding: 3px 6px 2.5px; min-width: 32px; }
-  .cvLangName       { font-size: 0.52rem; }
-  .cvLangBadge      { font-size: 0.34rem; }
-  .cvContactGrid    { gap: 3px; padding: 1.5px 4px 2px; }
-  .cvContactItem    { gap: 4px; }
-  .cvContactIcon    { width: 11px; height: 11px; font-size: 0.38rem; }
-  .cvContactText    { font-size: 0.36rem; }
+  .cvInterestTags   { gap: 3px; padding: 2px 0; }
+  .cvInterestTag    { font-size: 0.64rem; padding: 3px 8px 2.5px; }
+  .cvSkillGrid      { gap: 3px; }
+  .cvSkillTag       { font-size: 0.65rem; padding: 3px 9px 2.5px; }
+  .cvLangRow        { gap: 4px; padding: 2px 0; }
+  .cvLangCard       { padding: 7px 12px 6px; min-width: 54px; }
+  .cvLangName       { font-size: 0.82rem; }
+  .cvLangBadge      { font-size: 0.50rem; }
+  .cvContactGrid    { gap: 5px; padding: 3px 7px 4px; }
+  .cvContactItem    { gap: 6px; }
+  .cvContactIcon    { width: 17px; height: 17px; font-size: 0.54rem; }
+  .cvContactText    { font-size: 0.55rem; }
+}
+
+/* ═════════════════════════════════════════════
+   READER UI — MOBILE OVERRIDES
+═════════════════════════════════════════════ */
+
+/* ── ≤700px: tablet portrait (360px page) ───── */
+@media (max-width: 700px) {
+  /* Return button */
+  .returnToLib       { top: 0.85rem; left: 0.85rem; padding: 0.35rem 0.75rem 0.3rem 0.6rem; }
+  .returnToLibText   { font-size: 0.88rem; }
+
+  /* Container spacing */
+  .container         { gap: 0.6rem; }
+
+  /* Side nav buttons */
+  .sideBtn           { width: 44px; height: 60px; }
+  .bookRow           { gap: 0.8rem; }
+
+  /* Photo page */
+  .photoCaption      { padding: 16px 16px 22px; gap: 4px; }
+  .photoFirstName    { font-size: 2.2rem; }
+  .photoLastName     { font-size: 2.9rem; }
+  .photoTitle        { font-size: 0.95rem; letter-spacing: 0.28em; margin-top: 2px; }
+
+  /* Achievement page */
+  .achRankNum        { font-size: 2.9rem; }
+  .achRankLabel      { font-size: 0.36rem; }
+  .achTitleText      { font-size: 1.33rem; }
+  .achBullet         { font-size: 0.62rem; }
+  .achPeriod         { font-size: 0.48rem; }
+  .achGalleryLabel   { font-size: 0.56rem; }
+  .achLinkBtn        { font-size: 0.76rem; padding: 5px 11px 4px; }
+
+  /* Project page */
+  .projTitleText     { font-size: 1.72rem; }
+  .projSubtitle      { font-size: 0.62rem; }
+  .projBullet        { font-size: 0.62rem; }
+  .projDescription   { font-size: 0.57rem; }
+  .projLinkBtn       { font-size: 0.76rem; padding: 5px 11px 4px; }
+  .projJamOverlayRank   { font-size: 1.29rem; }
+  .projJamOverlayName   { font-size: 0.52rem; }
+  .projJamOverlayPeriod { font-size: 0.43rem; }
+}
+
+/* ── ≤480px: small mobile portrait (300px page) */
+@media (max-width: 480px) {
+  /* Return button */
+  .returnToLib       { top: 0.6rem; left: 0.6rem; padding: 0.28rem 0.6rem 0.25rem 0.5rem; }
+  .returnToLibText   { font-size: 0.72rem; letter-spacing: 0.08em; }
+
+  /* Container spacing */
+  .container         { gap: 0.4rem; }
+
+  /* Side nav buttons: absolute overlay on book edges to avoid layout overflow */
+  .bookRow {
+    gap: 0;
+    position: relative;
+  }
+  .sideBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 50px;
+    z-index: 5;
+  }
+  .sideBtnPrev { left: 0; }
+  .sideBtnNext { right: 0; }
+
+  /* Page indicator */
+  .pageIndicator     { font-size: 0.72rem; letter-spacing: 0.22em; }
+
+  /* Photo page */
+  .photoCaption      { padding: 10px 10px 14px; gap: 2px; }
+  .photoFirstName    { font-size: 1.85rem; }
+  .photoLastName     { font-size: 2.4rem; }
+  .photoTitle        { font-size: 0.78rem; letter-spacing: 0.24em; margin-top: 1px; }
+
+  /* Achievement page */
+  .achRankNum        { font-size: 2.4rem; }
+  .achRankLabel      { font-size: 0.30rem; letter-spacing: 0.2em; }
+  .achRankBadge      { padding: 3px 8px 4px 12px; }
+  .achTitleWrap      { padding: 3px 8px 3px; }
+  .achTitleText      { font-size: 1.10rem; letter-spacing: 0.02em; }
+  .achBody           { padding: 3px 7px 4px; gap: 3px; }
+  .achPeriod         { font-size: 0.40rem; }
+  .achBullet         { font-size: 0.51rem; line-height: 1.4; padding-left: 14px; }
+  .achBullet::before { font-size: 0.36rem; }
+  .achGalleryHeader  { padding: 4px 8px 3px; gap: 5px; }
+  .achGalleryLabel   { font-size: 0.46rem; }
+  .achGallery        { gap: 3px; padding: 3px; }
+  .achLinks          { gap: 4px; }
+  .achLinkBtn        { font-size: 0.62rem; padding: 3px 8px 3px; letter-spacing: 0.1em; }
+
+  /* Project page */
+  .projTitleWrap     { padding: 4px 8px 3px; }
+  .projTitleText     { font-size: 1.42rem; letter-spacing: 0.04em; }
+  .projBody          { padding: 4px 8px 4px; gap: 4px; }
+  .projSubtitle      { font-size: 0.51rem; padding: 2px 0 2px 6px; }
+  .projBadge         { font-size: 0.40rem; padding: 2px 6px 1.5px; }
+  .projDescription   { font-size: 0.47rem; padding: 4px 0 1px; }
+  .projBullet        { font-size: 0.51rem; line-height: 1.4; padding-left: 14px; }
+  .projBullet::before { font-size: 0.36rem; }
+  .projLinks         { gap: 4px; }
+  .projLinkBtn       { font-size: 0.62rem; padding: 3px 8px 3px; letter-spacing: 0.1em; }
+  .projJamOverlay    { padding: 5px 8px 6px; gap: 5px; }
+  .projJamOverlayRank   { font-size: 1.07rem; }
+  .projJamOverlayName   { font-size: 0.43rem; }
+  .projJamOverlayPeriod { font-size: 0.36rem; }
 }

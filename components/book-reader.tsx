@@ -12,7 +12,6 @@ import {
   Globe,
   Link2,
   Mail,
-  MapPin,
   X,
   ZoomIn,
 } from "lucide-react";
@@ -23,14 +22,20 @@ const HTMLFlipBook = dynamic(() => import("react-pageflip"), {
   ssr: false,
 }) as any;
 
+const PAGE_SIZES = {
+  sm: { w: 300, h: 428, portrait: true  }, // ≤480px  — single page, portrait
+  md: { w: 360, h: 514, portrait: true  }, // ≤700px  — single page, portrait
+  lg: { w: 420, h: 600, portrait: false }, // >700px  — double spread
+} as const;
+
 function usePageSize() {
-  const [size, setSize] = useState<{ w: number; h: number } | null>(null);
+  const [size, setSize] = useState<{ w: number; h: number; portrait: boolean } | null>(null);
   useEffect(() => {
     const update = () => {
       const vw = window.innerWidth;
-      if (vw <= 480)      setSize({ w: 155, h: 221 });
-      else if (vw <= 700) setSize({ w: 270, h: 385 });
-      else                setSize({ w: 420, h: 600 });
+      if (vw <= 480)      setSize(PAGE_SIZES.sm);
+      else if (vw <= 700) setSize(PAGE_SIZES.md);
+      else                setSize(PAGE_SIZES.lg);
     };
     update();
     window.addEventListener("resize", update);
@@ -45,8 +50,6 @@ const PROFILE_TOTAL_PAGES = 4;
 const ACHIEVEMENTS_TOTAL_PAGES = 5;
 /* cover · (content+album)×4 · back-cover */
 const PROJECTS_TOTAL_PAGES = 10;
-
-const ROMAN_NUMERALS = ["I", "II", "III", "IV"];
 
 /* Detect vertical orientation from filename: -v1., _v1., etc. */
 const isVerticalPhoto = (src: string) => /[-_]v\d*\./i.test(src);
@@ -799,15 +802,40 @@ interface Props {
 
 export function BookReader({ roman, label, coverImg, backCoverImg, isProfile, isAchievements, isProjects, onClose }: Props) {
   const bookRef = useRef<any>(null);
+  const returnBtnRef = useRef<HTMLButtonElement | null>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const pageSize = usePageSize();
   const [bookReady, setBookReady] = useState(false);
-  useEffect(() => { setBookReady(false); }, [pageSize]);
-  /* Unified photo modal — stores the images array directly for any book */
   const [photoModal, setPhotoModal] = useState<{ images: string[]; currentIdx: number } | null>(null);
+  /* ref mirror of photoModal so keyboard handler doesn't need re-registration */
+  const photoModalRef = useRef(photoModal);
+
+  useEffect(() => { setBookReady(false); }, [pageSize]);
+
+  /* Save focus before opening; restore on unmount */
+  useEffect(() => {
+    previousFocusRef.current = document.activeElement as HTMLElement;
+    returnBtnRef.current?.focus();
+    return () => { previousFocusRef.current?.focus(); };
+  }, []);
+
+  /* Keep photoModalRef in sync */
+  useEffect(() => { photoModalRef.current = photoModal; }, [photoModal]);
+
+  /* Arrow key navigation — defers to photo modal when it is open */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (photoModalRef.current !== null) return;
+      if (e.key === "ArrowRight") bookRef.current?.pageFlip().flipNext();
+      else if (e.key === "ArrowLeft") bookRef.current?.pageFlip().flipPrev();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   if (!pageSize) return null;
-  const { w: PAGE_W, h: PAGE_H } = pageSize;
+  const { w: PAGE_W, h: PAGE_H, portrait } = pageSize;
 
   const totalPages = isAchievements
     ? ACHIEVEMENTS_TOTAL_PAGES
@@ -874,7 +902,7 @@ export function BookReader({ roman, label, coverImg, backCoverImg, isProfile, is
       transition={{ duration: 0.22 }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <button className={s.returnToLib} onClick={onClose}>
+      <button ref={returnBtnRef} className={s.returnToLib} onClick={onClose}>
         <ArrowLeft className={s.returnToLibArrow} size={18} strokeWidth={2.5} />
         <span className={s.returnToLibText}>RETURN TO LIBRARY</span>
       </button>
@@ -894,7 +922,7 @@ export function BookReader({ roman, label, coverImg, backCoverImg, isProfile, is
           <div
             className={s.bookWrap}
             style={{
-              width: PAGE_W * 2,
+              width: portrait ? PAGE_W : PAGE_W * 2,
               height: PAGE_H,
               opacity: bookReady ? 1 : 0,
               transition: "opacity 0.18s ease",
@@ -911,7 +939,7 @@ export function BookReader({ roman, label, coverImg, backCoverImg, isProfile, is
               minHeight={PAGE_H}
               maxHeight={PAGE_H}
               showCover={true}
-              usePortrait={false}
+              usePortrait={portrait}
               drawShadow={true}
               flippingTime={700}
               maxShadowOpacity={0.5}
@@ -941,7 +969,13 @@ export function BookReader({ roman, label, coverImg, backCoverImg, isProfile, is
           </button>
         </div>
 
-        <span className={s.pageIndicator}>
+        <span
+          className={s.pageIndicator}
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          aria-label={`Page ${currentPage + 1} of ${totalPages}`}
+        >
           ◆ {currentPage + 1} / {totalPages} ◆
         </span>
       </motion.div>

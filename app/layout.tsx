@@ -27,8 +27,22 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Alpaslan Kemal Pehlivanlı",
-  description: "Game Designer Portfolio",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000"),
+  title: "Alpaslan Kemal Pehlivanlı — Game Designer",
+  description: "Portfolio of Alpaslan Kemal Pehlivanlı, game designer and co-founder of TigerOne Studios. Explore projects, achievements, and CV.",
+  openGraph: {
+    title: "Alpaslan Kemal Pehlivanlı — Game Designer",
+    description: "Portfolio of Alpaslan Kemal Pehlivanlı, game designer and co-founder of TigerOne Studios.",
+    type: "profile",
+    locale: "en_US",
+    images: [{ url: "/cover1.png", width: 240, height: 340, alt: "Portfolio cover" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alpaslan Kemal Pehlivanlı — Game Designer",
+    description: "Portfolio of Alpaslan Kemal Pehlivanlı, game designer and co-founder of TigerOne Studios.",
+    images: ["/cover1.png"],
+  },
 };
 
 export default function RootLayout({

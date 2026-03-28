@@ -53,58 +53,6 @@
   transform: perspective(900px) rotateY(-14deg);
 }
 
-/* ── Cover inner frame ───────────────────────── */
-.coverInner {
-  position: relative;
-  z-index: 1;
-  width: 68%;
-  height: 72%;
-  border: 1px solid rgba(245, 208, 32, 0.25);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.coverInner::before,
-.coverInner::after {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-color: rgba(245, 208, 32, 0.6);
-  border-style: solid;
-}
-
-.coverInner::before {
-  top: -2px;
-  left: -2px;
-  border-width: 2px 0 0 2px;
-}
-
-.coverInner::after {
-  bottom: -2px;
-  right: -2px;
-  border-width: 0 2px 2px 0;
-}
-
-.coverRoman {
-  font-family: var(--font-bangers);
-  font-size: 4.8rem;
-  letter-spacing: 0.1em;
-  color: rgba(245, 208, 32, 0.8);
-  line-height: 1;
-}
-
-/* ── Label inside cover frame ────────────────── */
-.coverLabel {
-  font-family: var(--font-bangers);
-  font-size: 1.25rem;
-  letter-spacing: 0.22em;
-  color: rgba(245, 208, 32, 0.72);
-}
-
 /* ── Mobile: 481px – 700px ───────────────────── */
 /*
  * Three books at 155px + 2×22px gap = 510px.
@@ -116,8 +64,6 @@
     width: 180px;
     height: 256px;
   }
-  .coverRoman { font-size: 3.5rem; }
-  .coverLabel { font-size: 1rem; }
 }
 
 /* ── Mobile: ≤ 480px ─────────────────────────── */
@@ -131,19 +77,5 @@
   .coverFace {
     width: 96px;
     height: 137px;
-  }
-  .coverRoman {
-    font-size: 1.8rem;
-    letter-spacing: 0.07em;
-  }
-  .coverLabel {
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-  }
-  /* Scale down corner bracket accents proportionally */
-  .coverInner::before,
-  .coverInner::after {
-    width: 8px;
-    height: 8px;
   }
 }

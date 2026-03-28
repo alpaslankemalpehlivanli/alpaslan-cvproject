@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowDown, Download } from "lucide-react";
+import { profile } from "@/data/data";
 import { Books } from "./books";
 import s from "./home-client.module.css";
 
@@ -30,9 +31,7 @@ export function HomeClient() {
 
       <header className={s.header}>
         <div className={s.panel}>
-          <h1 className={s.name}>
-            {"ALPASLAN KEMAL PEHLİVANLI"}
-          </h1>
+          <h1 className={s.name}>{profile.name}</h1>
           <div className={s.roleBadge}>
             <span className={s.roleText}>GAME DESIGNER</span>
           </div>

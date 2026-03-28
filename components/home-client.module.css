@@ -211,8 +211,7 @@
 @media (max-width: 480px) {
   .header { padding: 1rem 0.75rem 0; }
 
-  /* Tighter panel padding so name fits without wrapping */
-  .panel  { padding: 1.2rem 5rem 1.2rem; }
+  .panel  { padding: 1.2rem 1rem 1.2rem; }
 
   .main   { padding: 1rem 0.75rem 2.5rem; }
 
