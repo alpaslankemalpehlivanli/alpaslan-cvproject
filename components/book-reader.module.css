@@ -88,6 +88,7 @@
   all: unset;
   cursor: pointer;
   position: relative;
+  z-index: 1;
   width: 54px;
   height: 72px;
   display: flex;

@@ -828,7 +828,10 @@ export function BookReader({ roman, label, coverImg, backCoverImg, isProfile, is
     const onKey = (e: KeyboardEvent) => {
       if (photoModalRef.current !== null) return;
       if (e.key === "ArrowRight") bookRef.current?.pageFlip().flipNext();
-      else if (e.key === "ArrowLeft") bookRef.current?.pageFlip().flipPrev();
+      else if (e.key === "ArrowLeft") {
+        const pf = bookRef.current?.pageFlip();
+        if (pf) { const rect = pf.getBoundsRect(); pf.getFlipController().flip({ x: rect.left + 10, y: 1 }); }
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -844,7 +847,16 @@ export function BookReader({ roman, label, coverImg, backCoverImg, isProfile, is
     : PROFILE_TOTAL_PAGES;
 
   const flipNext = () => bookRef.current?.pageFlip().flipNext();
-  const flipPrev = () => bookRef.current?.pageFlip().flipPrev();
+  const flipPrev = () => {
+    const pf = bookRef.current?.pageFlip();
+    if (!pf) return;
+    // Workaround for page-flip library bug: flipPrev() hardcodes x=10 without
+    // accounting for rect.left, which breaks in portrait mode (rect.left < 0).
+    // We manually pass the correct viewport coordinate so convertToBook lands
+    // in the corner zone and the flip is not blocked by disableFlipByClick.
+    const rect = pf.getBoundsRect();
+    pf.getFlipController().flip({ x: rect.left + 10, y: 1 });
+  };
 
   // Build inner pages — react-pageflip rejects null children
   const innerPages = isProfile
