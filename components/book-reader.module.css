@@ -2162,21 +2162,9 @@
   /* Container spacing */
   .container         { gap: 0.4rem; }
 
-  /* Side nav buttons: absolute overlay on book edges to avoid layout overflow */
-  .bookRow {
-    gap: 0;
-    position: relative;
-  }
-  .sideBtn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 32px;
-    height: 50px;
-    z-index: 5;
-  }
-  .sideBtnPrev { left: 0; }
-  .sideBtnNext { right: 0; }
+  /* Side nav buttons: tight gap, normal flow — 300px book + 28px×2 + 4px×2 = 364px < 375px */
+  .bookRow           { gap: 4px; }
+  .sideBtn           { width: 28px; height: 46px; }
 
   /* Page indicator */
   .pageIndicator     { font-size: 0.72rem; letter-spacing: 0.22em; }
